@@ -8,7 +8,7 @@ var pool = mysql.createPool({
 	port: '3306',
 	user: 'root',
 	password: '5898zHy1627',
-	db: 'school_idol',
+	db: 'Cooperator',
 	charset: 'UTF8_BIN',
 	dateStrings: true,
 	multipleStatements: true

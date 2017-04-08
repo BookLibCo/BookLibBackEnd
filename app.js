@@ -8,8 +8,12 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var request = require('./routes/request');
+var message = require('./routes/message');
 
 var app = express();
+
+var orm = require('./database/orm');
 
 var tool = require('./other/Tools');
 
@@ -40,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // session
 app.use(session({
-	secret: 'school_idol',
+	secret: 'Cooperator',
 	cookie: {maxAge: 15 * 60 * 1000},   //session timeout: 15 min
 	resave: false,
 	saveUninitialized: true
@@ -53,8 +57,14 @@ app.use(function (req, res, next) {
 	next();
 });
 
+// routers
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', users);
+app.use('/request', request);
+app.use('/message', message);
+
+// orm database settings
+orm.set(app);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

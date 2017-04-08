@@ -3,7 +3,8 @@
  */
 var query = require('../mysql');
 
-module.exports.authorize = function (name, password, callBack) {
+//登陆校验
+module.exports.login = function (name, password, callBack) {
 	query('SELECT * FROM User ' +
 		'WHERE name={name} '.format({
 			name: name
@@ -24,6 +25,7 @@ module.exports.authorize = function (name, password, callBack) {
 		});
 };
 
+//插入新用户
 module.exports.insert = function (req, callBack) {
 	query('INSERT INTO User (name, email, password) VALUES ' +
 		'("{name}", "{email}", "{password}")'.format({
@@ -44,27 +46,60 @@ module.exports.insert = function (req, callBack) {
 		});
 };
 
+//列出查询的用户
 module.exports.list = function (callBack) {
-	query('SELECT id, name, email FROM User', function (err, vals, fields) {
-		if (err) {
-			callBack(false, null, null);
-			return;
-		}
-		
-		callBack(true, vals, fields);
-	});
+	query('SELECT id, name, email FROM User',
+		function (err, vals, fields) {
+			if (err) {
+				callBack(false, null, null);
+				return;
+			}
+			
+			callBack(true, vals, fields);
+		});
 };
 
+//删除／封禁用户
 module.exports.delete = function (id, callBack) {
 	query('DELETE FROM User WHERE id="{id}"'.format({
-		id: id
-	}),
-	function (err, vals, fields) {
-		if (err) {
-			callBack(false);
-			return;
-		}
-		
-		callBack(true);
-	});
+			id: id
+		}),
+		function (err, vals, fields) {
+			if (err) {
+				callBack(false);
+				return;
+			}
+			
+			callBack(true);
+		});
+};
+
+//与其他用户结为好友关系
+module.exports.makeFriend = function (id, callBack) {
+	query(''.format({
+			id: id
+		}),
+		function (err, vals, fields) {
+			if (err) {
+				callBack(false);
+				return;
+			}
+			
+			callBack(true);
+		});
+};
+
+//置为已认证状态
+module.exports.auth = function (id, callBack) {
+	query(''.format({
+			id: id
+		}),
+		function (err, vals, fields) {
+			if (err) {
+				callBack(false);
+				return;
+			}
+			
+			callBack(true);
+		});
 };
