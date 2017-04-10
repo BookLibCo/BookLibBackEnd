@@ -14,6 +14,9 @@ var message = require('./routes/message');
 var app = express();
 
 var orm = require('./database/orm');
+var sequelize = require('./database/sequelize');
+
+sequelize.test();
 
 var tool = require('./other/Tools');
 

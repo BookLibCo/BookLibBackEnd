@@ -4,7 +4,7 @@
 var orm = require('orm');
 
 module.exports.set = function (app) {
-	app.use(orm.express('mysql://root:5898zHy1627@localhost/Cooperator', {
+	app.use(orm.express('mysql://root:5898zHy1627@localhost：3306/Cooperator', {
 		define: function (db, models, next) {
 			next()
 		}
