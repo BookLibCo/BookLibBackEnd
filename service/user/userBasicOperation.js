@@ -1,7 +1,7 @@
 /**
  * Created by zhy on 2017/3/16.
  */
-var user = require('../../database/moudule/user');
+var user = require('.././user');
 
 module.exports.register = function (req, res, callBack) {
 	user.insert({

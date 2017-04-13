@@ -13,12 +13,8 @@ var message = require('./routes/message');
 
 var app = express();
 
-var orm = require('./database/orm');
-var sequelize = require('./database/sequelize');
 
-sequelize.test();
-
-var tool = require('./other/Tools');
+var tool = require('./other/tool');
 
 // string format
 tool.stringFormat();
@@ -66,8 +62,6 @@ app.use('/user', users);
 app.use('/request', request);
 app.use('/message', message);
 
-// orm database settings
-orm.set(app);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
