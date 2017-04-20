@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../module/user');
-var Message = require('../module/message');
-var Requirement = require('../module/requirement');
-var Tag = require('../module/tag');
+var User = require('../models/user');
+var Message = require('../models/message');
+var Requirement = require('../models/requirement');
+var Tag = require('../models/tag');
 
 /* GET home page. */
 router.get('/', function (req, res) {
