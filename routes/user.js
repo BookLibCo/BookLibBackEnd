@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var $ = require('../controllers/controller').user;
 
 /* GET users listing. */
 //用户主页
@@ -28,43 +29,35 @@ router.get('/', function (req, res, next) {
 });
 
 //登陆
-router.post('/login.service', function (req, res, next) {
-	next();
-});
+router.route('/login.service')
+	.post($.login);
 
 //注册
-router.post('/register.service', function (req, res, next) {
-	next();
-});
+router.route('/register.service')
+	.post($.add);
 
 //认证
-router.post('/auth.service', function (req, res, next) {
-	next();
-});
+router.route('/auth.service')
+	.post($.authorize);
 
 //登出
-router.post('/logout.service', function (req, res, next) {
-	next();
-});
+router.route('/logout.service')
+	.post($.logout);
 
 //获取单个用户的信息
-router.post('/one.service', function (req, res, next) {
-	next();
-});
+router.route('/one.service')
+	.get($.get);
 
 //补全／修改用户信息
-router.post('/info_complete.service', function (req, res, next) {
-	next();
-});
+router.route('/info_complete.service')
+	.post($.modify);
 
 //添加好友
-router.post('/add_friend.service', function (req, res, next) {
-	next();
-});
+router.route('/add_friend.service')
+	.post($.add);
 
 //获得好友列表
-router.post('/list_friend.service', function (req, res, next) {
-	next();
-});
+router.route('/list_friend.service')
+	.get($.get);
 
 module.exports = router;
