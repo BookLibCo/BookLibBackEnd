@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
-var Message = require('../models/message');
+var Friend = require('../models/friend');
 var Requirement = require('../models/requirement');
 var Tag = require('../models/tag');
 

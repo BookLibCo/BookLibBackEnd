@@ -34,4 +34,9 @@ var Requirement = db.sequelize.define('requirement', {
     freezeTableName: true
 });
 
+db.sequelize.sync().then(function(){
+    console.log("Sync Success");
+});
+
+
 module.exports = Requirement;
