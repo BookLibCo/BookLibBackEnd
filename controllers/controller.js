@@ -4,5 +4,5 @@
 module.exports = {
 	user: require('./module/user'),
 	request: require('./module/request'),
-	message: require('./module/message')
+	friend: require('./module/friend')
 };
