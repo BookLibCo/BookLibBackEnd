@@ -40,7 +40,7 @@ var User = db.sequelize.define('user', {
         },
         identity: {
             type: db.Sequelize.CHAR(1),
-            description: '角色 未定0 学生1 老师2 多的另加',
+            description: '角色 未定0 学生1 老师2 公司3 多的另加',
             defaultValue: '0'
         },
         state: {
