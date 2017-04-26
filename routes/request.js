@@ -4,13 +4,7 @@
 var express = require('express');
 var router = express.Router();
 
-var controller = require('../controllers/controller');
-var $ = null;
-
-router.use(function (req, res, next) {
-	$ = controller(req, res).request;
-	next();
-});
+var $ = require('../controllers/controller').request;
 
 //添加需求
 router.get('/', function (req, res, next) {
@@ -21,21 +15,21 @@ router.route('/add.service')
 	.post($.add);
 
 router.route('/list.service')
-	.post();
+	.post($.list);
 
 router.route('/info.service')
-	.post();
+	.post($.one);
 
 router.route('/judge.service')
-	.post();
+	.post($.judge);
 
 router.route('/change.service')
-	.post();
+	.post($.update);
 
 router.route('/fire.service')
-	.post();
+	.post($.fire);
 
 router.route('/cancel.service')
-	.post();
+	.post($.delete);
 
-// module.exports = router;
+module.exports = router;

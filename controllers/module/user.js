@@ -3,57 +3,58 @@
  */
 var $ = require('../../service/userService');
 
-module.exports = function (req, res) {
-	function error(err) {
-		res.send(err)
-	}
-	
-	this.login = function () {
-		$.findUser([
-			'id', 'name'
-		], {
-			name: req.params.name,
-			password: req.params.password
-		}, error, function (result) {
+exports.login = function (req, res, next) {
+	$.findUser([
+		'id', 'name'
+	], {
+		name: req.params.name,
+		password: req.params.password
+	}, error, function (result) {
 		//	todo
-		})
-	};
-	
-	this.logout = function () {
-		req.session.destroy();
-		res.send(true);
-	};
-	
-	this.add = function () {
-		$.createUser({
-			username: req.params.name,
-			password: req.params.pwd,
-			avatar: '',
-			phone: req.body.phone,
-			email: req.body.email
-		}, error, function (result) {
-		//	todo
-		})
-	};
-	
-	this.delete = function () {
-		
-	};
-	
-	this.get = function () {
-		
-	};
-	
-	this.list = function () {
-		
-	};
-	
-	this.modify = function () {
-		$.updateUser({})
-	};
-	
-	this.authorize = function () {
-		
-	};
+	})
 };
 
+exports.logout = function (req, res, next) {
+	req.session.destroy();
+	res.send(true);
+};
+
+exports.add = function (req, res, next) {
+	$.createUser({
+		username: req.params.name,
+		password: req.params.pwd,
+		avatar: '',
+		phone: req.body.phone,
+		email: req.body.email
+	}, function (err) {
+		res.send(err);
+	}, function (result) {
+		//	todo
+	})
+};
+
+exports.delete = function (req, res, next) {
+
+};
+
+exports.get = function (req, res, next) {
+	$.findUser('*', {
+		id: req.params.id
+	}, function (err) {
+		res.send(err);
+	}, function (result) {
+	//	todo
+	})
+};
+
+exports.list = function (req, res, next) {
+//	todo
+};
+
+exports.modify = function (req, res, next) {
+//	todo
+};
+
+exports.authorize = function (req, res, next) {
+//	todo
+};
