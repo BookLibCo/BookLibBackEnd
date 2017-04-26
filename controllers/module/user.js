@@ -1,7 +1,7 @@
 /**
  * Created by zhy on 2017/4/20.
  */
-var model = require('../../service/userService');
+var $ = require('../../service/userService');
 
 exports.login = function (req, res, next) {
 
@@ -12,7 +12,7 @@ exports.logout = function (req, res, next) {
 };
 
 exports.add = function (req, res, next) {
-	model.createUser({
+	$.createUser({
 		username: req.params.name,
 		password: req.params.pwd,
 		avatar: '',
@@ -36,7 +36,7 @@ exports.list = function (req, res, next) {
 };
 
 exports.modify = function (req, res, next) {
-	model.updateUser({})
+	$.updateUser({})
 };
 
 exports.authorize = function (req, res, next) {

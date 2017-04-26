@@ -4,45 +4,32 @@
 var express = require('express');
 var router = express.Router();
 
+var $ = require('../controllers/controller').request;
+
 //添加需求
 router.get('/', function (req, res, next) {
 	res.redirect('../index.html');
 });
 
-router.post('/add.service', function (req, res, next) {
-	next();
-});
+router.route('/add.service')
+	.post($.add);
 
-router.post('/list.service', function (req, res, next) {
+router.route('/list.service')
+	.post();
 
-});
+router.route('/info.service')
+	.post();
 
-router.get('/conditions.service', function (req, res, next) {
-	res.send('1');
-});
+router.route('/judge.service')
+	.post();
 
-router.post('/search.service', function (req, res, next) {
-	next();
-});
+router.route('/change.service')
+	.post();
 
-router.post('/one.service', function (req, res, next) {
-	next();
-});
+router.route('/fire.service')
+	.post();
 
-router.post('/judge.service', function (req, res, next) {
-	next();
-});
-
-router.post('/change.service', function (req, res, next) {
-	next();
-});
-
-router.post('/fire.service', function (req, res, next) {
-	next();
-});
-
-router.post('/cancel.service', function (req, res, next) {
-	next();
-});
+router.route('/cancel.service')
+	.post();
 
 module.exports = router;
