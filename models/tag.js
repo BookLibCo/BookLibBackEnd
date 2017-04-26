@@ -16,5 +16,9 @@ var Tag = db.sequelize.define('tag', {
     freezeTableName: true
 });
 
+db.sequelize.sync().then(function(){
+    console.log("Sync Success");
+});
+
 module.exports = Tag;
 

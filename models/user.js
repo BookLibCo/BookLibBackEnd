@@ -78,4 +78,8 @@ var User = db.sequelize.define('user', {
         freezeTableName: true
     });
 
+db.sequelize.sync().then(function(){
+    console.log("Sync Success");
+});
+
 module.exports = User;
