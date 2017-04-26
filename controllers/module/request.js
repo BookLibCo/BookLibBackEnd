@@ -3,34 +3,49 @@
  */
 var $ = require('../../service/requirementService');
 
-exports.add = function (req, res, next) {
-
-};
-
-exports.list = function (req, res, next) {
-
-};
-
-exports.one = function (req, res, next) {
-
-};
-
-exports.update = function (req, res, next) {
-
-};
-
-exports.delete = function (req, res, next) {
-
-};
-
-exports.fire = function (req, res, next) {
-
-};
-
-exports.accept = function (req, res, next) {
-
-};
-
-exports.judge = function (req, res, next) {
-
+module.exports = function (req, res) {
+	function error(err) {
+		res.send(err);
+	}
+	
+	this.add = function () {
+		$.createRequirement({
+			user: req.params.user_id,
+			title: req.params.title,
+			tags: req.params.tags,
+			content: req.params.content,
+			state: req.params.state
+		}, error, function () {
+			
+		})
+	};
+	
+	this.list = function () {
+		
+	};
+	
+	this.one = function () {
+		
+	};
+	
+	this.update = function () {
+		
+	};
+	
+	this.delete = function () {
+		
+	};
+	
+	this.fire = function () {
+		
+	};
+	
+	this.accept = function () {
+		
+	};
+	
+	this.judge = function () {
+		
+	};
+	
 };

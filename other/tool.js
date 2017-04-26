@@ -1,7 +1,7 @@
 /**
  * Created by zhy on 16/7/13.
  */
-module.exports.stringFormat = function () {
+exports.stringFormat = function () {
 	String.prototype.format = function (args) {
 		if (arguments.length > 0) {
 			var result = this;
@@ -28,4 +28,18 @@ module.exports.stringFormat = function () {
 			return this;
 		}
 	}
+};
+
+exports.reqParams = function (req, res, next) {
+	if (req.body && req.body.length !== 0) {
+		req.params = req.body
+	}
+	
+	next();
+};
+
+exports.refreshSession = function (req, res, next) {
+	req.session._garbage = new Date();
+	req.session.touch();
+	next();
 };

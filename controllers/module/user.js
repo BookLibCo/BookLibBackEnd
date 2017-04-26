@@ -3,42 +3,57 @@
  */
 var $ = require('../../service/userService');
 
-exports.login = function (req, res, next) {
-
-};
-
-exports.logout = function (req, res, next) {
-
-};
-
-exports.add = function (req, res, next) {
-	$.createUser({
-		username: req.params.name,
-		password: req.params.pwd,
-		avatar: '',
-		phone: req.body.phone,
-		email: req.body.email
-	}).then(function () {
+module.exports = function (req, res) {
+	function error(err) {
+		res.send(err)
+	}
 	
-	})
+	this.login = function () {
+		$.findUser([
+			'id', 'name'
+		], {
+			name: req.params.name,
+			password: req.params.password
+		}, error, function (result) {
+		//	todo
+		})
+	};
+	
+	this.logout = function () {
+		req.session.destroy();
+		res.send(true);
+	};
+	
+	this.add = function () {
+		$.createUser({
+			username: req.params.name,
+			password: req.params.pwd,
+			avatar: '',
+			phone: req.body.phone,
+			email: req.body.email
+		}, error, function (result) {
+		//	todo
+		})
+	};
+	
+	this.delete = function () {
+		
+	};
+	
+	this.get = function () {
+		
+	};
+	
+	this.list = function () {
+		
+	};
+	
+	this.modify = function () {
+		$.updateUser({})
+	};
+	
+	this.authorize = function () {
+		
+	};
 };
 
-exports.delete = function (req, res, next) {
-
-};
-
-exports.get = function (req, res, next) {
-
-};
-
-exports.list = function (req, res, next) {
-
-};
-
-exports.modify = function (req, res, next) {
-	$.updateUser({})
-};
-
-exports.authorize = function (req, res, next) {
-
-};

@@ -4,6 +4,14 @@
 var express = require('express');
 var router = express.Router();
 
+var controller = require('../controllers/controller');
+var $ = null;
+
+router.use(function (req, res, next) {
+	$ = controller(req, res).message;
+	next();
+});
+
 router.get('/', function (req, res, next) {
 	res.redirect('../index.html');
 });

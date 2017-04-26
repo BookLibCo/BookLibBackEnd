@@ -4,7 +4,13 @@
 var express = require('express');
 var router = express.Router();
 
-var $ = require('../controllers/controller').request;
+var controller = require('../controllers/controller');
+var $ = null;
+
+router.use(function (req, res, next) {
+	$ = controller(req, res).request;
+	next();
+});
 
 //添加需求
 router.get('/', function (req, res, next) {
@@ -32,4 +38,4 @@ router.route('/fire.service')
 router.route('/cancel.service')
 	.post();
 
-module.exports = router;
+// module.exports = router;

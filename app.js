@@ -40,6 +40,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//统一post和get的参数位置
+app.use(tool.reqParams);
 
 // session
 app.use(session({
@@ -50,11 +52,7 @@ app.use(session({
 }));
 
 // refresh session
-app.use(function (req, res, next) {
-	req.session._garbage = new Date();
-	req.session.touch();
-	next();
-});
+app.use(tool.refreshSession);
 
 // routers
 app.use('/', index);

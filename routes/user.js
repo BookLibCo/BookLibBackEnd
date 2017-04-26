@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var $ = require('../controllers/controller').user;
+
+var controller = require('../controllers/controller');
+var $ = null;
+
+router.use(function (req, res, next) {
+	$ = controller(req, res).user;
+	next();
+});
 
 /* GET users listing. */
 //用户主页
