@@ -6,11 +6,6 @@ var router = express.Router();
 
 var $ = require('../controllers/controller').request;
 
-//添加需求
-router.get('/', function (req, res, next) {
-	res.redirect('../index.html');
-});
-
 router.route('/add.service')
 	.post($.add);
 

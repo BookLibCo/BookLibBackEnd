@@ -1,9 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
-var Friend = require('../models/friend');
-var Requirement = require('../models/requirement');
-var Tag = require('../models/tag');
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -11,11 +7,12 @@ router.get('/', function (req, res) {
 });
 
 router.get('/index.html', function (req, res) {
-
-
     res.render('index', {
         title: '欢迎来到校园合伙人'
     });
 });
+
+// todo: 使用模版生成页面
+
 
 module.exports = router;

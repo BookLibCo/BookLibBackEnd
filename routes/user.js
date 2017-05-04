@@ -3,47 +3,16 @@ var router = express.Router();
 
 var $ = require('../controllers/controller').user;
 
-/* GET users listing. */
-//用户主页
-router.get('/', function (req, res, next) {
-	res.render('users', {
-		title: '用户信息',
-		user: {     //用户信息
-			name: 'mhbzhy',
-			face: '/xxx/xxx.png',
-			sch_name: 'bjtu',
-			authorized: true
-		},          //好友信息
-		friend: [
-			{
-				name: 'honoka',
-				face: '/xxx/xxx.png',
-				authorized: false
-			},
-			{
-				name: 'kotori',
-				face: '/xxx/xxx.png',
-				authorized: false
-			}
-		]
-	});
-});
-
-//登陆
-router.route('/login.service')
-	.post($.login);
-
-//注册
-router.route('/register.service')
-	.post($.add);
-
 //认证
 router.route('/auth.service')
 	.post($.authorize);
 
 //登出
 router.route('/logout.service')
-	.post($.logout);
+	.post(function(req, res, next) {
+		req.session.uid !== undefined ? next() :
+			res.sendErrorWithoutStatus('您尚未登陆');
+	}, $.logout);
 
 //获取单个用户的信息
 router.route('/one.service')

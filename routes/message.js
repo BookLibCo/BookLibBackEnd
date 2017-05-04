@@ -2,26 +2,18 @@
  * Created by zhy on 2017/4/8.
  */
 var express = require('express');
-var router = express.Router();
+var router  = express.Router();
 
-var controller = require('../controllers/controller');
-var $ = null;
+var $ = require('../controllers/controller').message;
 
-router.use(function (req, res, next) {
-	$ = controller(req, res).message;
-	next();
-});
+router.route('/send.service')
+	.post(function (req, res, next) {
+		next()
+	});
 
-router.get('/', function (req, res, next) {
-	res.redirect('../index.html');
-});
-
-router.post('/send', function (req, res, next) {
-	next();
-});
-
-router.post('/list', function (req, res, next) {
-	next();
-});
+router.route('/list.service')
+	.post(function (req, res, next) {
+		next()
+	});
 
 module.exports = router;

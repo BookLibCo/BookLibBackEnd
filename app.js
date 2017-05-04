@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
+var static = require('./routes/static');
 var users = require('./routes/user');
 var request = require('./routes/request');
 var message = require('./routes/message');
@@ -14,7 +14,7 @@ var message = require('./routes/message');
 var app = express();
 
 
-var tool = require('./other/tool');
+var tool = require('./middleware/tool');
 
 // string format
 tool.stringFormat();
@@ -55,10 +55,17 @@ app.use(session({
 app.use(tool.refreshSession);
 
 // routers
-app.use('/', index);
-app.use('/user', users);
-app.use('/request', request);
-app.use('/message', message);
+var middleware = require('./middleware/middleware');
+var auth = middleware.auth;
+
+app.use(auth.completeCheck);
+app.use(middleware.error.error);
+app.use(middleware.render.resolveRender);
+
+app.use('/', static);
+app.use('/user', auth.loginCheck, users);
+app.use('/request', auth.loginCheck, request);
+app.use('/message', auth.loginCheck, message);
 
 
 // catch 404 and forward to error handler
