@@ -12,6 +12,14 @@ router.get('/index.html', function (req, res) {
     });
 });
 
+// test
+var userService = require('../service/userService');
+router.get('/test', function (req, res) {
+	userService.test().then(function (result) {
+		console.log(result);
+	})
+});
+
 // todo: 使用模版生成页面
 
 

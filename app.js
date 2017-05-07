@@ -13,11 +13,11 @@ var message = require('./routes/message');
 
 var app = express();
 
-
 var tool = require('./middleware/tool');
 
 // string format
 tool.stringFormat();
+app.use(tool.extendModel);
 
 //设置跨域访问
 app.all('*', function(req, res, next) {
@@ -66,7 +66,6 @@ app.use('/', static);
 app.use('/user', auth.loginCheck, users);
 app.use('/request', auth.loginCheck, request);
 app.use('/message', auth.loginCheck, message);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

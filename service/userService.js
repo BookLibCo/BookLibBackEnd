@@ -62,6 +62,21 @@ module.exports = {
             .on('success', success)
             .on('failure', failure);
     },
+    
+    authUser: function (name, password, failure, success) {
+        User.findOne({
+	        attribute: [
+	        
+	        ],
+	        where: [
+	        
+	        ]
+        })
+    },
+    
+    test: function () {
+	    return User.eFindAll()
+    },
 
     // 同上 区别是查找多条记录 返回的是Array对象
     findUsers: function findUsers(need, query, failure, success) {
