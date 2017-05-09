@@ -6,10 +6,13 @@ router.get('/', function (req, res) {
     res.redirect('/index.html');
 });
 
-router.get('/index.html', function (req, res) {
-    res.render('index', {
-        title: '欢迎来到校园合伙人'
-    });
+// MyCollerApp2
+var router1 = express.Router();
+
+router.use('/MyCollerApp2', router1);
+
+router1.get('/myinformation.html', function (req, res) {
+	res.render('myinformation.html', )
 });
 
 // test
