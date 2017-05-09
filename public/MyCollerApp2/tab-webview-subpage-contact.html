@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的资料</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+		    body,.mui-content{
+	    		background-color: #fff;
+	    		font-size: 14px;
+	    		color: #000;
+	    	}
+	    	.mui-bar-nav.mui-bar {
+			  background-color: #007aff;
+			}
+			.mui-bar-nav.mui-bar h1{
+				color: #fff;
+			}
+			.mui-bar-nav.mui-bar .mui-action-back{
+				color: #fff;
+			}
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}
+			.mui-col-xs-3,
+			.mui-control-content {
+				overflow-y: auto;
+				height: 100%;
+			}
+			.mui-segmented-control .mui-control-item {
+				line-height: 50px;
+				width: 100%;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				background-color: #fff;
+			}
+			.mui-btn{
+				margin: 5px;
+			}
+			.mui-listspan{
+				float: right; 
+				padding-right: 15px;
+				font-size: 12px; 
+				color: #8f8f94;
+			}
+			.mui-table-view-cell>a:not(.mui-btn) {
+				white-space: normal;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="">
+							我的动态<span class="mui-listspan"><%=myStates%></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="">
+							当月访客<span class="mui-listspan"><%=visitNum%></span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="">
+							二维码名片
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="" href="">
+							自我介绍<span class="mui-listspan">编辑</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="" href="">
+							标签<span class="mui-listspan">编辑</span>
+						</a>
+					</li>
+				</ul>
+				<div class="mui-content-padded">
+					<div class="mui-btn mui-btn-primary">
+						java <%perTag%>
+					</div>
+					<div class="mui-btn mui-btn-primary">
+						PHP
+					</div>
+					<div class="mui-btn mui-btn-primary">
+						IOS
+					</div>
+					<div class="mui-btn mui-btn-primary">
+						HTML5
+					</div>
+					<div class="mui-btn mui-btn-primary">
+						APP
+					</div>
+					<div class="mui-btn mui-btn-primary">
+						移动互联网
+					</div>
+				</div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="">
+							专栏<span class="mui-listspan">编辑</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="" href="">
+							<p>最近一直在看Bootstrap，不得不说其中有很多学习的地方。</p>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="">
+							工作经历<span class="mui-listspan">编辑</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="">
+							教育经历<span class="mui-listspan">编辑</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="">
+							其他<span class="mui-listspan">编辑</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="" href="">
+							家乡<span class="mui-listspan">北京</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="" href="">
+							生日<span class="mui-listspan">06-15</span>
+						</a>
+					</li>
+				</ul>
+		</div>
+		<script src="js/mui.min.js"></script>
+	</body>
+	<script>
+			mui.init();
+			var mainPage = null;
+		</script>
+</html>

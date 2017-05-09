@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<title></title>
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			
+			.oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+			
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			
+			.oa-contact-content {
+				width: 100%;
+			}
+			
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			
+			.oa-contact-name,
+			oa-contact-position {
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">详情</h1>
+		</header>
+		<div class="mui-content">
+
+			<div class="mui-card">
+				<!--页眉，放置标题-->
+				<div class="mui-card-header">
+					<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+						<li class="mui-table-view-cell">
+							<span class="mui-badge mui-badge-warning">292</span>
+							<div class="mui-slider-cell">
+								<div class="oa-contact-cell mui-table">
+									<div class="oa-contact-avatar mui-table-cell">
+										<img class="mui-media-object" src="images/BAIDU.jpg">
+									</div>
+									<div class="oa-contact-content mui-table-cell">
+										<div class="mui-clearfix">
+											<h4 class="oa-contact-name">百度JAVA实习生招聘<%=proTitle%></h4>
+											<span class="oa-contact-position mui-h6">实习招聘</span>
+										</div>
+										<div id="">
+											<p class='mui-ellipsis'>百度 某某HR<%=PerIntro%></p>
+											<p class='mui-ellipsis'>
+												<span class="mui-badge mui-badge-primary">标签</span> JAVA <%=reqtag%>
+											</p>
+											<p class='mui-ellipsis'>
+												<span class="mui-badge mui-badge-danger">描述</span> 实习生 <%=prodesc%>
+											</p>
+											<p class='mui-ellipsis'>
+												<span class="mui-badge mui-badge-success">需求</span> 本科实习生两名 <%=proReq%>
+											</p>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="mui-card-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell mui-media">
+							<h4>创建人</h4>
+							</br>
+							<img class="mui-media-object mui-pull-left" src="images/LIUDONG.jpg">
+							<div class="mui-media-body">
+								<p id="name" style="color:red;font-size:16px;font-weight:bold;">刘东<%=relPerson%></p>
+								<p class='mui-ellipsis'>
+									<span id="creater-position">原北京百度公司HR<%=PerPosition%></span>
+								</p>
+								<p class='mui-ellipsis'>
+									<span id="creater-tag" class="mui-badge mui-badge-primary">技能</span> 人力资源管理 项目管理 企业运营<%=skill%>
+								</p>
+							</div>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+
+				<div class="mui-card-footer">
+					<h4 style="color:black;font-weight:bold;float: left;">关键字</h4>
+					<div id="key-word">
+						<a class="mui-navigate-right" style="background-color: #DDDDDD; ">JAVA <%=perTag%></a>
+						<a class="mui-navigate-right" style="background-color: #DDDDDD; ">实习</a>
+						<a class="mui-navigate-right" style="background-color: #DDDDDD; ">刘东</a>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="mui-card">
+				<!--页眉，放置标题-->
+				<div class="mui-card-header">
+					<h4>内容描述</h4>
+				</div>
+
+				<div class="mui-card-content">
+					<div style="margin: 15px;">
+						<p>浑身难受，头皮发麻<%=fullReqDesc%></p>
+					</div>
+				</div>
+
+				<div class="mui-card-footer">
+					<a class="mui-tab-item mui-active">
+						<span class="mui-icon mui-icon-chatbubble"></span>
+						<span class="mui-tab-label">申请加入</span>
+					</a>
+					<a class="mui-tab-item mui-active">
+						<span class="mui-icon mui-icon-arrowthinup"></span>
+						<span class="mui-tab-label">点赞</span>
+					</a>
+					<a class="mui-tab-item mui-active">
+						<span class="mui-icon mui-icon-compose"></span>
+						<span class="mui-tab-label">评论</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>

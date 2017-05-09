@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<link type="text/css" rel="stylesheet" href="css/requirement_list.css">
+<script src="js/jquery.js"></script>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.title {
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			
+			.oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}
+			
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			
+			.oa-contact-content {
+				width: 100%;
+			}
+			
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			
+			.oa-contact-name,
+			oa-contact-position {
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="mui-content">
+			<div class="mui-input-row mui-search">
+				<input type="search" class="mui-input-clear" placeholder="">
+			</div>
+			<div class="mui-slider">
+				<div class="mui-slider-group">
+					<div class="mui-slider-item">
+						<a href="#"><img src="images/Gallary/BAIDU.png" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="images/Gallary/BEIJING.png" /></a>
+					</div>
+					<div class="mui-slider-item">
+						<a href="#"><img src="images/Gallary/MSRA.png" /></a>
+					</div>
+				</div>
+			</div>
+			<div class="screening">
+				<ul>
+					<li class="Sort1"><span>所在城市</span></li>
+					<li class="Sort2"><span>项目类别</span></li>
+					<li class="Sort3"><span>专     业</span></li>
+				</ul>
+			</div>
+			<div class="Sort-eject1 Sort-height">
+				<ul class="Sort-Sort" id="Sort-Sort1">
+					<li onclick="Sorts1(this)">北京</li>
+					<li onclick="Sorts1(this)">上海</li>
+					<li onclick="Sorts1(this)">深圳</li>
+				</ul>
+			</div>
+			<div class="Sort-eject2 Sort-height">
+				<ul class="Sort-Sort" id="Sort-Sort2">
+					<li onclick="Sorts2(this)">大学生创业</li>
+					<li onclick="Sorts2(this)">服务外包</li>
+					<li onclick="Sorts2(this)">科技竞赛</li>
+				</ul>
+			</div>
+
+			<div class="Sort-eject3 Sort-height">
+				<ul class="Sort-Sort" id="Sort-Sort3">
+					<li onclick="Sorts3(this)">数学</li>
+					<li onclick="Sorts3(this)">计算机</li>
+					<li onclick="Sorts3(this)">物理</li>
+				</ul>
+			</div>
+			<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" id="main-table">
+				<li class="mui-table-view-cell">
+					<span class="mui-badge mui-badge-warning">292</span>
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img class="mui-media-object" src="images/muwu.png">
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">图片处理以及卷积神经网络研究<%=proTitle%></h4>
+									<span class="oa-contact-position mui-h6">科研项目</span>
+								</div>
+								<div id="">
+									<p class='mui-ellipsis'>清华大学 某某教授<%=PerIntro%></p>
+									<p class='mui-ellipsis'>
+										<span class="mui-badge mui-badge-primary">标签</span> 神经网络<%=reqtag%>
+									</p>
+									<p class='mui-ellipsis'>
+										<span class="mui-badge mui-badge-danger">描述</span> 有关新型神经网络的研究<%=prodesc%>
+									</p>
+									<p class='mui-ellipsis'>
+										<span class="mui-badge mui-badge-success">需求</span> 本科实习生两名<%=proReq%>
+									</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				
+				<li class="mui-table-view-cell">
+					<span class="mui-badge mui-badge-warning">292</span>
+					<div class="mui-slider-cell">
+						<div class="oa-contact-cell mui-table">
+							<div class="oa-contact-avatar mui-table-cell">
+								<img class="mui-media-object" src="images/BAIDU.jpg">
+							</div>
+							<div class="oa-contact-content mui-table-cell">
+								<div class="mui-clearfix">
+									<h4 class="oa-contact-name">百度JAVA实习生招聘</h4>
+									<span class="oa-contact-position mui-h6">实习招聘</span>
+								</div>
+								<div id="">
+									<p class='mui-ellipsis'>百度 某某HR</p>
+									<p class='mui-ellipsis'>
+										<span class="mui-badge mui-badge-primary">标签</span> JAVA
+									</p>
+									<p class='mui-ellipsis'>
+										<span class="mui-badge mui-badge-danger">描述</span> 实习生
+									</p>
+									<p class='mui-ellipsis'>
+										<span class="mui-badge mui-badge-success">需求</span> 本科实习生两名
+									</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				
+
+			</ul>
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack: true //启用右滑关闭功能
+		});
+		
+		//筛选栏点击事件 依然是笨办法 每次点击都得把剩下俩清空，点击的显示出来
+
+		$(document).ready(function() {
+			$(".Sort1").click(function() {
+				if($('.Sort-eject2').hasClass('grade-w-roll')) {
+					$('.Sort-eject2').removeClass('grade-w-roll');
+					$(".Sort2").removeClass('current');
+					$('.screening').attr('style', ' ');
+				}else if($('.Sort-eject3').hasClass('grade-w-roll')) {
+					$('.Sort-eject3').removeClass('grade-w-roll');
+					$(".Sort3").removeClass('current');
+					$('.screening').attr('style', ' ');
+				}
+				if($('.Sort-eject1').hasClass('grade-w-roll')) {
+					$('.Sort-eject1').removeClass('grade-w-roll');
+					$(this).removeClass('current');
+					$('.screening').attr('style', ' ');
+				}else{
+					$('.Sort-eject1').addClass('grade-w-roll');
+					$(this).addClass('current');
+					$('.screening').attr('style', 'position: fixed;top:0;');
+					
+				}
+			});
+			$(".Sort2").click(function() {
+				if($('.Sort-eject1').hasClass('grade-w-roll')) {
+					$('.Sort-eject1').removeClass('grade-w-roll');
+					$(".Sort1").removeClass('current');
+					$('.screening').attr('style', ' ');
+				}else if($('.Sort-eject3').hasClass('grade-w-roll')) {
+					$('.Sort-eject3').removeClass('grade-w-roll');
+					$(".Sort3").removeClass('current');
+					$('.screening').attr('style', ' ');
+				} 
+				if($('.Sort-eject2').hasClass('grade-w-roll')) {
+					$('.Sort-eject2').removeClass('grade-w-roll');
+					$(this).removeClass('current');
+					$('.screening').attr('style', ' ');
+				}else{
+					$('.Sort-eject2').addClass('grade-w-roll');
+					$(this).addClass('current');
+					$('.screening').attr('style', 'position: fixed;top:0;');
+				}
+			});
+			$(".Sort3").click(function() {
+				if($('.Sort-eject1').hasClass('grade-w-roll')) {
+					$('.Sort-eject1').removeClass('grade-w-roll');
+					$(".Sort1").removeClass('current');
+					$('.screening').attr('style', ' ');
+				}else if($('.Sort-eject2').hasClass('grade-w-roll')) {
+					$('.Sort-eject2').removeClass('grade-w-roll');
+					$(".Sort2").removeClass('current');
+					$('.screening').attr('style', ' ');
+				}
+				if($('.Sort-eject3').hasClass('grade-w-roll')) {
+					$('.Sort-eject3').removeClass('grade-w-roll');
+					$(this).removeClass('current');
+					$('.screening').attr('style', ' ');
+				} else {
+					$('.Sort-eject3').addClass('grade-w-roll');
+					$(this).addClass('current');
+					$('.screening').attr('style', 'position: fixed;top:0;');
+				}
+			});
+		});
+
+		//js点击事件监听开始
+		
+		//点击每个筛选栏条目对应的事件 笨办法实现 每个栏一个方法
+
+		function Sorts1(sbj) {
+			var arr = document.getElementById("Sort-Sort1").getElementsByTagName("li");
+			for(var i = 0; i < arr.length; i++) {
+				var a = arr[i];
+				a.style.background = "";
+			};
+			//sbj.style.background = "#eee"
+			if($('.Sort-eject1').hasClass('grade-w-roll')) {
+				$('.Sort-eject1').removeClass('grade-w-roll');
+				$('.Sort1').removeClass('current');
+				$('.screening').attr('style', ' ');
+			}
+			
+			var table=document.getElementById("main-table");
+			table.removeChild(table.childNodes[0]);
+		}
+
+		function Sorts2(sbj) {
+			var arr = document.getElementById("Sort-Sort2").getElementsByTagName("li");
+			for(var i = 0; i < arr.length; i++) {
+				var a = arr[i];
+				a.style.background = "";
+			};
+			//sbj.style.background = "#eee"
+			if($('.Sort-eject2').hasClass('grade-w-roll')) {
+				$('.Sort-eject2').removeClass('grade-w-roll');
+				$('.Sort2').removeClass('current');
+				$('.screening').attr('style', ' ');
+			}
+		}
+
+		function Sorts3(sbj) {
+			var arr = document.getElementById("Sort-Sort3").getElementsByTagName("li");
+			for(var i = 0; i < arr.length; i++) {
+				var a = arr[i];
+				a.style.background = "";
+			};
+			//sbj.style.background = "#eee"
+			if($('.Sort-eject3').hasClass('grade-w-roll')) {
+				$('.Sort-eject3').removeClass('grade-w-roll');
+				$('.Sort3').removeClass('current');
+				$('.screening').attr('style', ' ');
+			}
+		}
+
+		$('form').on('submit', function(e) {
+			// 不提交
+			return false;
+		});
+	</script>
+
+</html>

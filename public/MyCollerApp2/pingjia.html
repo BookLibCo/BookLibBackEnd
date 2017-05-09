@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<!--<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>-->
+<head>
+		<title>需求完成情况评价</title>
+		 <script src="js/mui.min.js"></script>
+         <link href="css/mui.min.css" rel="stylesheet"/>
+         <script type="text/javascript" charset="utf-8">
+      	   mui.init();
+         </script>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta charset="UTF-8" />
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/star-rating.min.js" type="text/javascript"></script>
+		<!--css-->
+		<style type="text/css">
+			body {
+				font-family: "黑体";
+			}
+			
+			textarea {
+				min-width: 100%;
+				min-height: 100px;
+				resize: none;
+				overflow: hidden;
+				border: none;
+				font-family: "黑体";
+				font-size: 18px;
+				outline: none;
+				margin-left: 20px;
+			}
+			
+			.margin-left {
+				margin-left: 20px;
+			}
+			h4{
+				margin-bottom: -5px;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<form action="" method="post">
+			<div class="container-faluid">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+						<h4 class="center-block">发表评价</h4>
+						<hr />
+						<textarea name="pingjia" rows="" cols="" placeholder="在此输入您的评论（选填）"></textarea>
+						<hr />
+					</div>
+				</div>
+			</div>
+			<div class="margin-left">
+				<h4>需求描述真实度：</h4><input id="star1"  data-symbol="">
+				<h4>需求完成度：</h4><input id="star2"  data-symbol="">
+				<h4>时间效率：</h4><input id="star3"  data-symbol="">
+				<!--评价提交之后自动返回详情页面-->
+			    <input type="submit" value="发表评价" class="btn btn-info btn-lg center-block" />
+			    <p>(您的反馈是我们前进的动力)</p>
+			</div>
+			<div id="" class="center">
+			</div>
+
+		</form>
+		<script type="text/javascript">
+			$("#star1,#star2,#star3").rating({
+				min: 0,
+				max: 5,
+				step: 1,
+				size: 'lg',
+				showClear: false,
+				showCaption:false
+			});
+		</script>
+	</body>
+</html>
