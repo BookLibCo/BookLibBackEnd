@@ -12,7 +12,14 @@ var router1 = express.Router();
 router.use('/MyCollerApp2', router1);
 
 router1.get('/myinformation.html', function (req, res) {
-	res.render('myinformation.html', )
+	res.render('myinformation.html', {
+		myStates: 'Coming Soon',    //我的状态
+		visitNum: 'Coming Soon',    //访问数
+		perTag: [   //需求tag
+			'123', '456', '789'
+		],
+		newReqIntro: '' //需求介绍
+	})
 });
 
 // test
