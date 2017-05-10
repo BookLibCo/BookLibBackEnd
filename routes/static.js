@@ -27,7 +27,7 @@ routerStatic.get('/myinformation.html', function (req, res) {
 	})
 });
 
-routerStatic.get('/tab-webview-subpage-about.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-about', function (req, res) {
 	res.render('tab-webview-subpage-about', {
 		proTitle: '',   //需求标题 ex:图片处理以及卷积神经网络研究
 		PerIntro: '',   //个人介绍
@@ -39,7 +39,7 @@ routerStatic.get('/tab-webview-subpage-about.html', function (req, res) {
 	})
 });
 
-routerStatic.get('/tab-webview-subpage-chat.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-chat', function (req, res) {
 	res.render('tab-webview-subpage-chat', {
 		FriendName: '',     //朋友名称
 		FriendPosition: '', //朋友地位／职位
@@ -47,7 +47,7 @@ routerStatic.get('/tab-webview-subpage-chat.html', function (req, res) {
 	})
 });
 
-routerStatic.get('/tab-webview-subpage-contact.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-contact', function (req, res) {
 	res.render('tab-webview-subpage-contact', {
 		myStates: 'Coming Soon',    //我的状态
 		visitNum: 'Coming Soon',    //访问数
@@ -57,7 +57,7 @@ routerStatic.get('/tab-webview-subpage-contact.html', function (req, res) {
 	})
 });
 
-routerStatic.get('/tab-webview-subpage-req_information.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-req_information', function (req, res) {
 	res.render('tab-webview-subpage-req_information', {
 		proTitle: '',       //需求标题 ex:图片处理以及卷积神经网络研究
 		PerIntro: '',       //个人介绍
