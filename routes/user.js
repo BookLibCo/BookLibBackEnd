@@ -31,3 +31,6 @@ router.route('/list_friend.service')
 	.get($.get);
 
 module.exports = router;
+res.send({
+	name: q213
+})

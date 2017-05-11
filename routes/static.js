@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var $ = require('../controllers/controller');
+
 /* GET home page. */
 router.get('/', function (req, res) {
     res.redirect('/MyCollerApp2/index.html');
@@ -9,13 +11,15 @@ router.get('/', function (req, res) {
 
 });
 
-// MyCollerApp2
 var routerStatic = express.Router();
 var routerChat = express.Router();
+
+var session = require('../middleware/auth');
 
 router.use('/MyCollerApp2', routerStatic);
 router.use("/ChatRoom", routerChat);
 
+// MyCollerApp2(主要部分)
 routerStatic.get('/myinformation.html', function (req, res) {
 	res.render('myinformation', {
 		myStates: 'Coming Soon',    //我的状态
@@ -76,15 +80,19 @@ routerStatic.get('/tab-webview-subpage-req_information', function (req, res) {
 	})
 });
 
-// test
-var userService = require('../service/userService');
-router.get('/test', function (req, res) {
-	userService.test().then(function (result) {
-		console.log(result);
-	})
-});
+// ChatRoom 聊天室
+// 检查是否登陆
+routerChat.use(session.loginCheck);
 
-// todo: 使用模版生成页面
+
+
+// test
+// var userService = require('../service/userService');
+// router.get('/test', function (req, res) {
+// 	userService.test().then(function (result) {
+// 		console.log(result);
+// 	})
+// });
 
 
 module.exports = router;

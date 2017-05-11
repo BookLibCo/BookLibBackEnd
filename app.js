@@ -40,8 +40,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//统一post和get的参数位置
-app.use(tool.reqParams);
 
 // session
 app.use(session({
@@ -57,15 +55,20 @@ app.use(tool.refreshSession);
 // routers
 var middleware = require('./middleware/middleware');
 var auth = middleware.auth;
+var sessionRouter = require('./routes/session');
 
 app.use(auth.completeCheck);
 app.use(middleware.error.error);
 app.use(middleware.render.resolveRender);
 
 app.use('/', static);
-app.use('/user', auth.loginCheck, users);
-app.use('/request', auth.loginCheck, request);
-app.use('/message', auth.loginCheck, message);
+app.use('/session', sessionRouter);
+app.use('/user', users);
+app.use('/request', request);
+app.use('/message', message);
+// app.use('/user', auth.loginCheck, users);
+// app.use('/request', auth.loginCheck, request);
+// app.use('/message', auth.loginCheck, message);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

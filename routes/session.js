@@ -15,3 +15,4 @@ router.route('/register.service')
 	.post($.add);
 
 module.exports = router;
+

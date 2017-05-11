@@ -1,21 +1,22 @@
 /**
  * Created by zhy on 2017/4/20.
  */
-var $ = require('../../service/requirementService');
+var $ = require('../../service/req.bodyService');
 
 
 exports.add = function (req, res, next) {
-	$.createRequirement({
-		user: req.params.user_id,
-		title: req.params.title,
-		tags: req.params.tags,
-		content: req.params.content,
-		state: req.params.state
-	}, function(err) {
-		res.send(err);
-	}, function (result) {
-		
-	})
+	return $.createRequirement({
+		ownerId: req.body.ownerId,
+		ownerDesc: req.body.ownerDesc,
+		avatar: req.body.avatar,
+		title: req.body.title,
+		tag: req.body.tag,
+		content: req.body.content,
+		acceptorId: req.body.acceptorId,
+		state: req.body.state
+	}).then(function (result) {
+	
+	});
 };
 
 exports.list = function (req, res, next) {
@@ -23,27 +24,23 @@ exports.list = function (req, res, next) {
 };
 
 exports.one = function (req, res, next) {
-	$.findRequirement('*', {
-		id: req.params.id
-	}, function (err) {
-		res.send(err);
-	}, function (result) {
-		// todo
-	})
+	return $.findRequirement('*', {
+		id: req.body.id
+	}).then(function (result) {
+	
+	});
 };
 
 exports.update = function (req, res, next) {
-	$.updateRequirement({
-		user: req.params.user_id,
-		title: req.params.title,
-		tags: req.params.tags,
-		content: req.params.content,
-		state: req.params.state
-	}, function (err) {
-		res.send(err);
-	}, function (result) {
-		// todo
-	})
+	return $.updateRequirement({
+		user: req.body.user_id,
+		title: req.body.title,
+		tags: req.body.tags,
+		content: req.body.content,
+		state: req.body.state
+	}).then(function (result) {
+	
+	});
 };
 
 exports.delete = function (req, res, next) {
