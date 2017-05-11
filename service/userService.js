@@ -4,8 +4,8 @@ module.exports = {
     // 注册
     //
     // 列出的属性必须填满 没有填写的话设成''
-    createUser: function createUser(user, failure, success) {
-        User.create({
+    createUser: function createUser(user) {
+        return User.eCreate({
             username: user.username,
             password: user.password,
             avatar: user.avatar,
@@ -22,9 +22,7 @@ module.exports = {
             discipline: user.discipline,
             experience: user.experience,
             introduction: user.introduction
-        })
-            .on('success', success)
-            .on('failure', failure);
+        });
     },
 
     // 补全信息
@@ -34,18 +32,16 @@ module.exports = {
     // 传过来的newValues = { phone : '18801180000', email : 'foobar@126.com' }
     //
     // id是where查询条件 用户的ID 因为没有其他条件 所以写死了
-    updateUser: function updateUser(newValues, id, failure, success) {
-        User.update(newValues,
+    updateUser: function updateUser(newValues, id) {
+        return User.eUpdate(newValues,
             {
                 where: {
                     id: id
                 }
-            })
-            .on('success', success)
-            .on('failure', failure);
+            });
     },
 
-    // 登录 获取信息 好友列表 检查用户名是否存在等
+    // 登录 获取信息等
     //
     // need是需要获得的属性
     // 比如登录需要 id state和password
@@ -54,38 +50,43 @@ module.exports = {
     // query是where查询条件
     // 比如检查用户名是否存在
     // query = { username : 'foobar' }
-    findUser: function findUser(need, query, failure, success) {
-        User.findOne({
+    findUser: function findUser(need, query) {
+        return User.eFindOne({
             attribute: need,
             where: query
-        })
-            .on('success', success)
-            .on('failure', failure);
-    },
-    
-    authUser: function (name, password, failure, success) {
-        User.findOne({
-	        attribute: [
-	        
-	        ],
-	        where: [
-	        
-	        ]
-        })
-    },
-    
-    test: function () {
-	    return User.eFindAll()
+        });
     },
 
     // 同上 区别是查找多条记录 返回的是Array对象
-    findUsers: function findUsers(need, query, failure, success) {
-        User.findAll({
+    findUsers: function findUsers(need, query) {
+        return User.eFindAll({
             attribute: need,
             where: query
+        });
+    },
+
+    // 检查用户名是否存在
+    //
+    // name 要输入的用户名
+    // 返回true或false
+    isUsernameExisted: function isUsernameExisted(name) {
+        return User.eFindAll({
+            attribute: ['username']
+        }).then(function (result) {
+            for (var i = 0; i < result.length; i++) {
+                if (name == result[i].username) {
+                    return false;
+                }
+            }
+            return true;
         })
-            .on('success', success)
-            .on('failure', failure);
+    },
+
+    authUser: function (name, password) {
+        return User.eFindOne({
+            attribute: [],
+            where: []
+        });
     }
 };
 

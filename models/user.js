@@ -72,14 +72,32 @@ var User = db.sequelize.define('user', {
         introduction: {
             type: db.Sequelize.STRING(100),
             description: '简介 100字以内'
-        }
+        },
     },
     {
-        freezeTableName: true
+        freezeTableName: true,
+        timestamps: false
     });
 
 db.sequelize.sync().then(function(){
-    console.log("Sync Success");
+    // return User.create({
+    //     username:'Lovejoy',
+    //     password:'12345',
+    //     avatar:'meiyou',
+    //     phone:'18801182059',
+    //     email:'14301020@bjtu.edu.cn',
+    //     idcard:'12345678',
+    //     idcardfrontpic:'meiyou',
+    //     idcardbackpic:'meiyou',
+    //     identity:'1',
+    //     state:'1',
+    //     credit:700,
+    //     tags:'1',
+    //     school:'北京交通大学',
+    //     discipline:'软件',
+    //     experience:'无',
+    //     introduction:'无'
+    // });
 });
 
 module.exports = User;

@@ -37,13 +37,16 @@ exports.delete = function (req, res, next) {
 
 };
 
-exports.get = function (req, res, next) {
+exports.get = function (req, res, callBack) {
 	$.findUser('*', {
-		id: req.params.id
+		//id: req.params.id
+		id: 1
 	}, function (err) {
 		res.send(err);
 	}, function (result) {
-	//	todo
+        var username = result.username;
+        console.log(username);
+		callBack(result);
 	})
 };
 

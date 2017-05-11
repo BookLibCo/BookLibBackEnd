@@ -13,7 +13,8 @@ var Tag = db.sequelize.define('tag', {
         description: '标签字段不同太长'
     }
 }, {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
 });
 
 db.sequelize.sync().then(function(){

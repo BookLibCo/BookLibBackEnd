@@ -15,12 +15,12 @@ var Requirement = db.sequelize.define('requirement', {
     ownerDesc: {
         type: db.Sequelize.STRING(20),
         description: '需求提出人描述 例 清华大学软件学院某某教授',
-        allowNull:false
+        allowNull: false
     },
     avatar: {
         type: db.Sequelize.STRING(40),
         description: '需求图片存储路径 例 清华大学老师就直接放logo好了',
-        allowNull:false
+        allowNull: false
     },
     title: {
         type: db.Sequelize.STRING(20),
@@ -29,8 +29,8 @@ var Requirement = db.sequelize.define('requirement', {
     },
     tag: {
         type: db.Sequelize.STRING(20),
-        description: '需求标签',
-        allowNull:false
+        description: '需求标签 1&2&3的形式',
+        allowNull: false
     },
     content: {
         type: db.Sequelize.STRING(100),
@@ -38,7 +38,7 @@ var Requirement = db.sequelize.define('requirement', {
         allowNull: false
     },
     acceptorId: {
-        type:db.Sequelize.INTEGER,
+        type: db.Sequelize.INTEGER,
         description: '需求接受人的ID',
     },
     state: {
@@ -46,10 +46,11 @@ var Requirement = db.sequelize.define('requirement', {
         description: '状态 具体再细化'
     }
 }, {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
 });
 
-db.sequelize.sync().then(function(){
+db.sequelize.sync().then(function () {
     console.log("Sync Success");
 });
 

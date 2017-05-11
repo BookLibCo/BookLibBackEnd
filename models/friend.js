@@ -18,7 +18,8 @@ var Friend = db.sequelize.define('friend', {
         allowNull:false
     }
 }, {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
 });
 
 db.sequelize.sync().then(function(){
