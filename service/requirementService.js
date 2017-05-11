@@ -26,10 +26,14 @@ module.exports = {
     //
     // id是where查询条件 需求的ID 因为没有其他条件 所以写死了
     updateRequirement: function updateRequirement(newValues, id) {
+<<<<<<< HEAD
         return Requirement.eUpdate(newValues,
             {
+=======
+        return Requirement.eUpdate(newValues, {
+>>>>>>> mhbzhy
                 where: {
-                    id:id
+                    id: id
                 }
             });
     },
@@ -48,6 +52,7 @@ module.exports = {
             attribute: need,
             where: query
         });
+<<<<<<< HEAD
     },
 
     // 返回需求的标签
@@ -114,3 +119,8 @@ module.exports = {
         })
     },
 };
+=======
+    }
+};
+
+>>>>>>> mhbzhy
