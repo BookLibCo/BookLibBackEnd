@@ -4,14 +4,6 @@
 var $ = require('../../service/userService');
 
 exports.login = function (req, res, next) {
-	$.findUser([
-		'id', 'name'
-	], {
-		name: req.params.name,
-		password: req.params.password
-	}, error, function (result) {
-		//	todo
-	})
 	return $.authUser(
 		req.body.name,
 		req.body.password
@@ -21,8 +13,6 @@ exports.login = function (req, res, next) {
 };
 
 exports.logout = function (req, res, next) {
-	req.session.destroy();
-	res.send(true);
 	return Promise.resolve(function () {
 		req.session.destroy();
 		res.send(true);
@@ -30,21 +20,11 @@ exports.logout = function (req, res, next) {
 };
 
 exports.add = function (req, res, next) {
-	$.createUser({
-		username: req.params.name,
-		password: req.params.pwd,
-		avatar: '',
 	return $.createUser({
 		username: req.body.username,
 		password: req.body.password,
 		avatar: req.body.avatar,
 		phone: req.body.phone,
-		email: req.body.email
-	}, function (err) {
-		res.send(err);
-	}, function (result) {
-		// todo
-	})
 		email: req.body.email,
 		identity: req.body.identity
 	}).then(function (result) {
@@ -57,17 +37,6 @@ exports.delete = function (req, res, next) {
 	// todo 封禁用户
 };
 
-exports.get = function (req, res, callBack) {
-	$.findUser('*', {
-		//id: req.params.id
-		id: 1
-	}, function (err) {
-		res.send(err);
-	}, function (result) {
-        var username = result.username;
-        console.log(username);
-		callBack(result);
-	})
 exports.get = function (req, res, next) {
 	return $.findUserAll(req.query.id)
 		.then(function (result) {
