@@ -1,4 +1,5 @@
 var Requirement = require('../models/requirement');
+var Tag = require('../models/tag');
 
 module.exports = {
     // 发布需求
@@ -47,5 +48,69 @@ module.exports = {
             attribute: need,
             where: query
         });
-    }
+    },
+
+    // 返回需求的标签
+    //
+    // id 需求的id
+    // 返回Array对象 Object.name是标签的名字
+    findTags: function findTags(id) {
+        return Requirement.eFindOne({
+            attribute: ['tags'],
+            where: {
+                id: id
+            }
+        }).then(function (result) {
+            var tags = result.split('&');
+            if (tags.length < 1)
+                return null;
+            return Tag.eFindAll({
+                attribute: ['name'],
+                where: {
+                    id: {$in: tags}
+                }
+            });
+        });
+    },
+
+
+    // 添加Tag
+    //
+    // id   需求的id
+    // tag 要新加的标签
+    // 标签已存在或其他错误 返回false
+    addTag: function addTag(id, tag) {
+        return Tag.eFindAll({
+            attribute: ['name']
+        }).then(function (result) {
+            for (var i = 0; i < result.length; i++) {
+                if (tag == result[i].name) {
+                    return false;
+                }
+            }
+            return Tag.eCreate({
+                name: tag
+            }).then(function (result2) {
+                var newId = result2.id;
+                return Requirement.eFindOne({
+                    attribute: ['tags'],
+                    where: {
+                        id: id
+                    }
+                }).then(function (result3) {
+                    var newTag = result3.tags + '&' + newId;
+                    return Requirement.eUpdate(
+                        {
+                            tags: newTag
+                        },
+                        {
+                            where: {
+                                id: id
+                            }
+                        }
+                    );
+                })
+            })
+        })
+    },
 };

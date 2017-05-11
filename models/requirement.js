@@ -27,7 +27,7 @@ var Requirement = db.sequelize.define('requirement', {
         description: '需求标题',
         allowNull: false
     },
-    tag: {
+    tags: {
         type: db.Sequelize.STRING(20),
         description: '需求标签 1&2&3的形式',
         allowNull: false

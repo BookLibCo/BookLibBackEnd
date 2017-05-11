@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Tag = require('../models/tag');
 
 module.exports = {
     // 注册
@@ -69,7 +70,7 @@ module.exports = {
     //
     // name 要输入的用户名
     // 返回true或false
-    isUsernameExisted: function isUsernameExisted(name) {
+    isUserExisted: function isUsernameExisted(name) {
         return User.eFindAll({
             attribute: ['username']
         }).then(function (result) {
@@ -82,10 +83,74 @@ module.exports = {
         })
     },
 
+    // 返回用户的标签
+    //
+    // id 用户的id
+    // 返回Array对象 Object.name是标签的名字
+    findTags: function findTags(id) {
+        return User.eFindOne({
+            attribute: ['tags'],
+            where: {
+                id: id
+            }
+        }).then(function (result) {
+            var tags = result.split('&');
+            if (tags.length < 1)
+                return null;
+            return Tag.eFindAll({
+                attribute: ['name'],
+                where: {
+                    id: {$in: tags}
+                }
+            });
+        });
+    },
+
+    // 添加Tag
+    //
+    // id 用户的id
+    // tag 要新加的标签
+    // 标签已存在或其他错误 返回false
+    addTag: function addTag(id, tag) {
+        return Tag.eFindAll({
+            attribute: ['name']
+        }).then(function (result) {
+            for (var i = 0; i < result.length; i++) {
+                if (tag == result[i].name) {
+                    return false;
+                }
+            }
+            return Tag.eCreate({
+                name: tag
+            }).then(function (result2) {
+                var newId = result2.id;
+                return User.eFindOne({
+                    attribute: ['tags'],
+                    where: {
+                        id: id
+                    }
+                }).then(function (result3) {
+                    var newTag = result3.tags + '&' + newId;
+                    return User.eUpdate(
+                        {
+                            tags: newTag
+                        },
+                        {
+                            where: {
+                                id: id
+                            }
+                        }
+                    );
+                })
+            })
+        })
+    },
+
+    // 认证用户 先留着吧
     authUser: function (name, password) {
         return User.eFindOne({
             attribute: [],
-            where: []
+            where: {}
         });
     }
 };
