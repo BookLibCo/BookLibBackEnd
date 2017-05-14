@@ -1,7 +1,7 @@
 /**
  * Created by zhy on 2017/4/20.
  */
-var $ = require('../../service/req.bodyService');
+var $ = require('../../service/RequirementService');
 
 
 exports.add = function (req, res, next) {
