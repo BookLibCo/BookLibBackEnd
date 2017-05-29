@@ -5,17 +5,25 @@ var $ = require('../../service/RequirementService');
 
 
 exports.add = function (req, res, next) {
-	return $.createRequirement({
-		ownerId: req.body.ownerId,
-		ownerDesc: req.body.ownerDesc,
-		avatar: req.body.avatar,
-		title: req.body.title,
-		tag: req.body.tag,
-		content: req.body.content,
-		acceptorId: req.body.acceptorId,
-		state: req.body.state
-	}).then(function (result) {
+	var tags = req.body.tags || null;
+	var avatar = null;      //未定
 	
+	return $.createRequirement({
+		ownerId: req.session.uid,   //当前登录的用户id
+		ownerDesc: req.body.description,
+		avatar: avatar,
+		title: req.body.title,
+		tag: tags,
+		content: req.body.content,
+		acceptorId: null,           //创建时没有接受者
+		state: req.body.state
+	}).then((result) => {
+		res.send({
+		
+		})
+	}).catch((err) => {
+		err.errType = 'database';
+		next(err);
 	});
 };
 
@@ -26,8 +34,11 @@ exports.list = function (req, res, next) {
 exports.one = function (req, res, next) {
 	return $.findRequirement('*', {
 		id: req.body.id
-	}).then(function (result) {
+	}).then((result) => {
 	
+	}).catch((err) => {
+		err.errType = 'database';
+		next(err);
 	});
 };
 

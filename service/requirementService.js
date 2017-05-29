@@ -6,7 +6,8 @@ module.exports = {
     //
     // 列出的属性必须填满 没有填写的话设成''
     createRequirement: function createRequirement(requirement) {
-        return Requirement.eCreate({
+	    return Requirement.create({
+        // return Requirement.eCreate({
             ownerId: requirement.ownerId,
             ownerDesc: requirement.ownerDesc,
             avatar: requirement.avatar,

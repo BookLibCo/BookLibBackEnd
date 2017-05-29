@@ -12,19 +12,22 @@ router.route('/add.service')
 router.route('/list.service')
 	.post($.list);
 
-router.route('/info.service')
+router.route('/one.service')
 	.post($.one);
 
 router.route('/judge.service')
 	.post($.judge);
 
-router.route('/change.service')
+router.route('/update.service')
 	.post($.update);
 
 router.route('/fire.service')
 	.post($.fire);
 
-router.route('/cancel.service')
+router.route('/delete.service')
 	.post($.delete);
+
+router.route('/accept.service')
+	.post($.accept);
 
 module.exports = router;

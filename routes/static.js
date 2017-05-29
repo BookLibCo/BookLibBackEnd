@@ -81,10 +81,10 @@ routerStatic.get('/tab-webview-subpage-req_information.html', function (req, res
 // 检查是否登陆
 routerChat.use(session.loginCheck);
 
-// test
+// test.js
 // var userService = require('../service/userService');
-// router.get('/test', function (req, res) {
-// 	userService.test().then(function (result) {
+// router.get('/test.js', function (req, res) {
+// 	userService.test.js().then(function (result) {
 // 		console.log(result);
 // 	})
 // });

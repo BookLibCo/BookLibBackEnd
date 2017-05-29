@@ -16,5 +16,8 @@
 		"express-session": "latest",
 		"mysql": "latest",
 		"sequelize": "latest"
+	},
+	"devDependencies": {
+		"supertest": "latest"
 	}
 }

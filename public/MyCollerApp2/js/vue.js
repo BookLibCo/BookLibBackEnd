@@ -4753,7 +4753,7 @@ var template = Object.freeze({
       // jQuery, it is also removed with jQuery, that's why
       // we do the check for each directive instance and
       // store that check result on itself. This also allows
-      // easier test coverage control by unsetting the global
+      // easier test.js coverage control by unsetting the global
       // jQuery variable in tests.
       this.hasjQuery = typeof jQuery === 'function';
       if (this.hasjQuery) {
@@ -9288,7 +9288,7 @@ var template = Object.freeze({
       if (cbs) {
         cbs = cbs.length > 1 ? toArray(cbs) : cbs;
         // this is a somewhat hacky solution to the question raised
-        // in #2102: for an inline component listener like <comp @test="doThis">,
+        // in #2102: for an inline component listener like <comp @test.js="doThis">,
         // the propagation handling is somewhat broken. Therefore we
         // need to treat these inline callbacks differently.
         var hasParentCbs = isSource && cbs.some(function (cb) {

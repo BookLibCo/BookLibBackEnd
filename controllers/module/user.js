@@ -8,7 +8,12 @@ exports.login = function (req, res, next) {
 		req.body.name,
 		req.body.password
 	).then(function (result) {
-		res.send(JSON.stringify(result.id));
+		res.send({
+			msg: '登录成功',
+			data: {
+				userid: result.id
+			}
+		});
 	});
 };
 
