@@ -55,7 +55,7 @@ var User = db.sequelize.define('user', {
         },
         tags: {
             type: db.Sequelize.STRING(20),
-            description: '标签 1&2&3的形式'
+            description: '  1&2&3的形式'
         },
         school: {
             type: db.Sequelize.STRING(20),

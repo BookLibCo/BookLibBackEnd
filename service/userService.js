@@ -32,7 +32,7 @@ module.exports = {
     // 比如更新了phone信息和email信息
     // 传过来的newValues = { phone : '18801180000', email : 'foobar@126.com' }
     //
-    // id是where查询条件 用户的ID 因为没有其他条件 所以写死了
+    // id是where查询条件 用户的ID
     updateUser: function updateUser(newValues, id) {
         return User.eUpdate(newValues,
             {

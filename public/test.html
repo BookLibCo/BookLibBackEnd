@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h3>登录</h3>
+<form action="../routes/session/login.service" method="post">
+    <input type="text" name="name" value="zhy">
+    <input type="text" name="password" value="123">
+    <input type="submit" value="确定">
+</form>
+
+<h3>注册</h3>
+<form action="../routes/session/register.service" method="post">
+    <input type="text" name="username" value="zhy">
+    <input type="text" name="password" value="123">
+    <input type="text" name="avatar" value="zhy">
+    <input type="text" name="phone" value="123">
+    <input type="text" name="email" value="zhy">
+    <input type="text" name="identity" value="1">
+    <input type="submit" value="确定">
+</form>
+
+<h3>实名认证</h3>
+<form action="../routes/user/auth.service" method="post">
+    <input type="text" name="idcardfront" value="idcardfront">
+    <input type="text" name="idcardback" value="idcardback">
+    <input type="text" name="orgcode" value="1">
+    <input type="submit" value="确定">
+</form>
+
+<!-- 登出 -->
+<a herf="../routes/session/logout.service" value="登出" name="logout">登出</a>
+
+<h3>获取指定用户数据</h3>
+<form action="../../user/one.service" method="get">
+    <input type="text" name="id" value="1">
+    <input type="submit" value="确定">
+</form>
+
+<h3>更新用户信息</h3>
+<form action="../../user/update.service" method="post">
+    <input type="text" name="id" value="1">
+    <input type="text" name="phone" value="123+1">
+    <input type="text" name="email" value="zhy+1">
+    <input type="submit" value="确定">
+</form>
+
+<h3>添加好友</h3>
+<form action="../../user/addfriend.service" method="post">
+    <input type="text" name="id1" value="1">
+    <input type="text" name="id2" value="2">
+    <input type="submit" value="确定">
+</form>
+
+<h3>好友列表</h3>
+<form action="../../user/friends.service" method="post">
+    <input type="text" name="id" value="1">
+    <input type="submit" value="确定">
+</form>
+
+</body>
+</html>

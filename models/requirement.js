@@ -37,6 +37,18 @@ var Requirement = db.sequelize.define('requirement', {
         description: '需求内容',
         allowNull: false
     },
+    city: {
+        type: db.Sequelize.STRING(20),
+        description: '所在城市'
+    },
+    type: {
+        type: db.Sequelize.STRING(20),
+        description: '项目类别'
+    },
+    discipline: {
+        type: db.Sequelize.STRING(20),
+        description: '专业'
+    },
     acceptorId: {
         type: db.Sequelize.INTEGER,
         description: '需求接受人的ID',

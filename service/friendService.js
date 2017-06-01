@@ -76,7 +76,7 @@ module.exports = {
                     id: {$in: friends}
                 }
             });
-        });
+        })
     },
 
     // 判断用户A是否有用户id2这个朋友
