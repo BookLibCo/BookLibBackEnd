@@ -1,19 +1,19 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 
-var static = require('./routes/static');
-var users = require('./routes/user');
-var request = require('./routes/request');
-var message = require('./routes/message');
+const static = require('./routes/static');
+const users = require('./routes/user');
+const request = require('./routes/require');
+const message = require('./routes/message');
 
-var app = express();
+const app = express();
 
-var tool = require('./middleware/tool');
+const tool = require('./middleware/tool');
 
 // string format
 tool.stringFormat();
@@ -53,9 +53,9 @@ app.use(session({
 app.use(tool.refreshSession);
 
 // routers
-var middleware = require('./middleware/middleware');
-var auth = middleware.auth;
-var sessionRouter = require('./routes/session');
+const middleware = require('./middleware/middleware');
+const auth = middleware.auth;
+const sessionRouter = require('./routes/session');
 
 app.use(auth.completeCheck);
 app.use(middleware.error.error);
@@ -75,14 +75,26 @@ app.use('/msg', message);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-	var err = new Error('Not Found');
+	let err = new Error('Not Found');
 	err.status = 404;
 	next(err);
 });
 
-// error handler
-var error = require('./middleware/error');
+// 自定义 error handler
+const error = require('./middleware/error');
+app.use(error.databaseErr);
 
-app.use(error.serverError);
+// 最后的错误处理, express生成
+// error handler
+app.use(function(err, req, res, next) {
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get('env') === 'development' ? err : {};
+	
+	// render the error page
+	res.status(err.status || 500);
+	res.render('error');
+});
+
 
 module.exports = app;

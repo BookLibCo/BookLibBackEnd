@@ -1,12 +1,12 @@
 /**
  * Created by zhy on 2017/4/20.
  */
-var $ = require('../../service/RequirementService');
+const $ = require('../../service/RequirementService');
 
 
 exports.add = function (req, res, next) {
-	var tags = req.body.tags || null;
-	var avatar = null;      //未定
+	let tags = req.body.tags || null;
+	let avatar = null;      //未定
 	
 	return $.createRequirement({
 		ownerId: req.session.uid,   //当前登录的用户id
@@ -49,7 +49,7 @@ exports.update = function (req, res, next) {
 		tags: req.body.tags,
 		content: req.body.content,
 		state: req.body.state
-	}).then(function (result) {
+	}).then((result) => {
 	
 	});
 };

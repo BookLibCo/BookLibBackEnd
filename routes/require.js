@@ -1,10 +1,10 @@
 /**
  * Created by zhy on 2017/4/8.
  */
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var $ = require('../controllers/controller').request;
+const $ = require('../controllers/controller').request;
 
 router.route('/add.service')
 	.post($.add);
