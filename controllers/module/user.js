@@ -1,45 +1,51 @@
 /**
  * Created by zhy on 2017/4/20.
  */
-var $ = require('../../service/userService');
+const $ = require('../../service/userService');
+const other = require('../../other/other');
 
 exports.login = function (req, res, next) {
 	return $.authUser(
 		req.body.name,
 		req.body.password
-	).then(function (result) {
-		res.send(JSON.stringify(result.id));
+	).then((result) => {
+		return result.userid;
+	}).catch((err) => {
+		next(other.solveDBErr(err, '登录失败'));
 	});
 };
 
 exports.logout = function (req, res, next) {
 	return Promise.resolve(function () {
 		req.session.destroy();
-		res.send(true);
-	})
+		return true;
+	}).catch((err) => {
+		next(other.solveDBErr(err, '注销失败'));
+	});
 };
 
 exports.add = function (req, res, next) {
-	return $.createUser({
+	$.createUser({
 		username: req.body.username,
 		password: req.body.password,
 		avatar: req.body.avatar,
 		phone: req.body.phone,
 		email: req.body.email,
 		identity: req.body.identity
-	}).then(function (result) {
-		res.send(true);
+	}).then((result) => {
+		return result.userid;
+	}).catch((err) => {
+		return res.sendError('注册失败，error: ' + err.message);
 	});
 };
 
 exports.delete = function (req, res, next) {
-
 	// todo 封禁用户
 };
 
-exports.get = function (req, res, next) {
+exports.one = function (req, res, next) {
 	return $.findUserAll(req.query.id)
-		.then(function (result) {
+		.then((result) => {
 			res.send(result);
 		});
 };

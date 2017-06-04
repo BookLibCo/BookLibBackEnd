@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<h3>登录</h3>
+<form action="../../session/login.service" method="post">
+	<input type="text" name="name" value="zhy">
+	<input type="text" name="password" value="123">
+	<input type="submit" value="确定">
+</form>
+
+<h3>注册</h3>
+<form action="../../session/register.service" method="post">
+	<input type="text" name="username" value="zhy">
+	<input type="text" name="password" value="123">
+	<input type="text" name="avatar" value="zhy">
+	<input type="text" name="phone" value="123">
+	<input type="text" name="email" value="zhy">
+	<input type="text" name="identity" value="1">
+	<input type="submit" value="确定">
+</form>
+
+<h3>获取用户数据</h3>
+<form action="../../user/one.service" method="get">
+	<input type="text" name="id" value="1">
+	<input type="submit" value="确定">
+</form>
+
+</body>
+</html>

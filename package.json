@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "softwarepractice",
   "version": "0.0.0",
   "private": true,
@@ -20,4 +21,27 @@
     "should": "latest",
     "pedding": "latest"
   }
+=======
+	"name": "softwarepractice",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node ./bin/www"
+	},
+	"dependencies": {
+		"body-parser": "~1.16.0",
+		"cookie-parser": "~1.4.3",
+		"debug": "~2.6.0",
+		"ejs": "~2.5.5",
+		"express": "~4.14.1",
+		"morgan": "~1.7.0",
+		"serve-favicon": "~2.3.2",
+		"express-session": "latest",
+		"mysql": "latest",
+		"sequelize": "latest"
+	},
+	"devDependencies": {
+		"supertest": "latest"
+	}
+>>>>>>> a11452c4e457f430d2574ad562f9748b89e6a1c4
 }

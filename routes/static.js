@@ -1,23 +1,24 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var $ = require('../controllers/controller');
+// const $ = require('../controllers/controller');
 
 /* GET home page. */
-router.get('/', function (req, res) {
+router.get('/', (req, res) => {
     res.redirect('/MyCollerApp2/index.html');
 });
 
-var routerStatic = express.Router();
-var routerChat = express.Router();
+const routerStatic = express.Router();
+const routerChat = express.Router();
 
-var session = require('../middleware/auth');
+const session = require('../middleware/auth');
 
 router.use('/MyCollerApp2', routerStatic);
 router.use("/ChatRoom", routerChat);
+router.use('/req',require('./request'));
 
 // MyCollerApp2(主要部分)
-routerStatic.get('/myinformation.html', function (req, res) {
+routerStatic.get('/myinformation.html', (req, res) => {
 	res.render('myinformation', {
 		myStates: 'Coming Soon',    //我的状态
 		visitNum: 'Coming Soon',    //访问数
@@ -28,7 +29,7 @@ routerStatic.get('/myinformation.html', function (req, res) {
 	})
 });
 
-routerStatic.get('/tab-webview-subpage-about.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-about.html', (req, res) => {
     res.render('tab-webview-subpage-about', {
         proTitle: '',   //需求标题 ex:图片处理以及卷积神经网络研究
         PerIntro: '',   //个人介绍
@@ -40,7 +41,7 @@ routerStatic.get('/tab-webview-subpage-about.html', function (req, res) {
     })
 });
 
-routerStatic.get('/tab-webview-subpage-chat.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-chat.html', (req, res) => {
     res.render('tab-webview-subpage-chat', {
         FriendName: '',     //朋友名称
         FriendPosition: '', //朋友地位／职位
@@ -48,7 +49,7 @@ routerStatic.get('/tab-webview-subpage-chat.html', function (req, res) {
     })
 });
 
-routerStatic.get('/tab-webview-subpage-contact.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-contact.html', (req, res) => {
     res.render('tab-webview-subpage-contact', {
         myStates: 'Coming Soon',    //我的状态
         visitNum: 'Coming Soon',    //访问数
@@ -58,7 +59,7 @@ routerStatic.get('/tab-webview-subpage-contact.html', function (req, res) {
     })
 });
 
-routerStatic.get('/tab-webview-subpage-req_information.html', function (req, res) {
+routerStatic.get('/tab-webview-subpage-req_information.html', (req, res) => {
     res.render('tab-webview-subpage-req_information', {
         proTitle: '',       //需求标题 ex:图片处理以及卷积神经网络研究
         PerIntro: '',       //个人介绍
@@ -81,10 +82,10 @@ routerStatic.get('/tab-webview-subpage-req_information.html', function (req, res
 // 检查是否登陆
 routerChat.use(session.loginCheck);
 
-// test
+// test.js
 // var userService = require('../service/userService');
-// router.get('/test', function (req, res) {
-// 	userService.test().then(function (result) {
+// router.get('/test.js', function (req, res) {
+// 	userService.test.js().then(function (result) {
 // 		console.log(result);
 // 	})
 // });

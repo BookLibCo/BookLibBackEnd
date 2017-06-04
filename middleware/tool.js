@@ -38,11 +38,11 @@ exports.refreshSession = function (req, res, next) {
 
 exports.extendModel = function (req, res, next) {
 	function errorHandler(results, res) {
-		// todo: 全局数据库操作错误处理
-		res.sendErrorWithoutStatus(results.message);
+		// todo: 全局数据库操作错误处理，暂时废弃
+		// res.sendErrorWithoutStatus(results.message);
 	}
 	
-	var model = require('sequelize/lib/model');
+	const model = require('sequelize/lib/model');
 	
 	model.prototype.eFindAll = function (options) {
 		return this.findAll(options)

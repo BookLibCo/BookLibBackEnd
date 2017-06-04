@@ -1,18 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var $ = require('../controllers/controller').user;
+const $ = require('../controllers/controller').user;
 
 //认证
 router.route('/auth.service')
     .post($.authorize);
-
-//登出
-router.route('/logout.service')
-    .post(function (req, res, next) {
-        req.session.uid !== undefined ? next() :
-            res.sendErrorWithoutStatus('您尚未登陆');
-    }, $.logout);
 
 //获取单个用户的信息
 router.route('/one.service')
