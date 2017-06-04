@@ -9,7 +9,7 @@ router.route('/auth.service')
 
 //获取单个用户的信息
 router.route('/one.service')
-    .get($.get);
+    .get($.one);
 
 //补全／修改用户信息
 router.route('/info_complete.service')
@@ -21,6 +21,6 @@ router.route('/add_friend.service')
 
 //获得好友列表
 router.route('/list_friend.service')
-    .get($.get);
+    .get($.list);
 
 module.exports = router;

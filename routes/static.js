@@ -15,7 +15,6 @@ const session = require('../middleware/auth');
 
 router.use('/MyCollerApp2', routerStatic);
 router.use("/ChatRoom", routerChat);
-router.use('/req',require('./request'));
 
 // MyCollerApp2(主要部分)
 routerStatic.get('/myinformation.html', (req, res) => {

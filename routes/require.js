@@ -7,27 +7,41 @@ const router = express.Router();
 const $ = require('../controllers/controller').request;
 
 router.route('/add.service')
-	.post($.add);
+    .post($.add);
 
-router.route('/list.service')
-	.post($.list);
+// router.route('/list.service')
+// 	.post($.list);
+
+router.get('/list.service', function (req, res, next) {
+    var requires = [
+        {
+            avatar: '/req/images/BAIDU.jpg',
+            title: '标题',
+            type: '大学生创业',
+            ownerDesc: '小明',
+            tags: '移动开发',
+            content: '内容'
+        }];
+    res.locals.requires = requires;
+    res.render('tab-webview-subpage-about');
+})
 
 router.route('/one.service')
-	.post($.one);
+    .post($.one);
 
 router.route('/judge.service')
-	.post($.judge);
+    .post($.judge);
 
 router.route('/update.service')
-	.post($.update);
+    .post($.update);
 
 router.route('/fire.service')
-	.post($.fire);
+    .post($.fire);
 
 router.route('/delete.service')
-	.post($.delete);
+    .post($.delete);
 
 router.route('/accept.service')
-	.post($.accept);
+    .post($.accept);
 
 module.exports = router;
