@@ -28,7 +28,7 @@ router.route('/register.service')
 
 //登出
 router.route('/logout.service')
-	.post(
+	.get(
 		(req, res, next) => {
 			req.session.uid !== undefined ? next() :
 				res.sendError('您尚未登陆');

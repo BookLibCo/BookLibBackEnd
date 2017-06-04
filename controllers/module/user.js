@@ -1,7 +1,7 @@
 /**
  * Created by zhy on 2017/4/20.
  */
-const $ = require('../../service/userService');
+const $     = require('../../service/userService');
 const other = require('../../other/other');
 
 exports.login = function (req, res, next) {
@@ -25,7 +25,7 @@ exports.logout = function (req, res, next) {
 };
 
 exports.add = function (req, res, next) {
-	$.createUser({
+	return $.createUser({
 		username: req.body.username,
 		password: req.body.password,
 		avatar: req.body.avatar,
@@ -35,7 +35,7 @@ exports.add = function (req, res, next) {
 	}).then((result) => {
 		return result.userid;
 	}).catch((err) => {
-		return res.sendError('注册失败，error: ' + err.message);
+		next(other.solveDBErr(err, '注册失败'));
 	});
 };
 
@@ -46,7 +46,10 @@ exports.delete = function (req, res, next) {
 exports.one = function (req, res, next) {
 	return $.findUserAll(req.query.id)
 		.then((result) => {
-			res.send(result);
+			return result;
+		})
+		.catch((err) => {
+			next(other.solveDBErr(err, '数据库错误'));
 		});
 };
 

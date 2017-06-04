@@ -6,10 +6,10 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-const static = require('./routes/static');
-const users = require('./routes/user');
-const request = require('./routes/require');
-const message = require('./routes/message');
+const static      = require('./routes/static');
+const users       = require('./routes/user');
+const requirement = require('./routes/requirement');
+const message     = require('./routes/message');
 
 const app = express();
 
@@ -64,11 +64,11 @@ app.use(middleware.render.resolveRender);
 app.use('/', static);
 app.use('/ses', sessionRouter);
 app.use('/user', users);
-app.use('/req', request);
+app.use('/req', requirement);
 app.use('/msg', message);
 // todo 测试时不需检查登录，部署时添加
 // app.use('/user', auth.loginCheck, users);
-// app.use('/request', auth.loginCheck, request);
+// app.use('/require', auth.loginCheck, require);
 // app.use('/message', auth.loginCheck, message);
 
 // 数据库错误处理
