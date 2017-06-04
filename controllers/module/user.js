@@ -25,7 +25,7 @@ exports.logout = function (req, res, next) {
 };
 
 exports.add = function (req, res, next) {
-	$.createUser({
+	return $.createUser({
 		username: req.body.username,
 		password: req.body.password,
 		avatar: req.body.avatar,

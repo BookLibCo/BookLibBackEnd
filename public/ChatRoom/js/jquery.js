@@ -8599,8 +8599,8 @@ function ajaxExtend( target, src ) {
 
 	return target;
 }
-
-/* Handles responses to an ajax request:
+	
+	/* Handles responses to an ajax requirement:
  * - finds the right dataType (mediates between content-type and expected dataType)
  * - returns the corresponding response
  */
@@ -8658,8 +8658,8 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 		return responses[ finalDataType ];
 	}
 }
-
-/* Chain conversions given the request and the original response
+	
+	/* Chain conversions given the requirement and the original response
  * Also sets the responseXXX fields on the jqXHR instance
  */
 function ajaxConvert( s, response, jqXHR, isSuccess ) {
@@ -8762,8 +8762,8 @@ jQuery.extend( {
 
 	// Counter for holding the number of active queries
 	active: 0,
-
-	// Last-Modified header cache for next request
+	
+	// Last-Modified header cache for next requirement
 	lastModified: {},
 	etag: {},
 
@@ -8976,8 +8976,8 @@ jQuery.extend( {
 					}
 					return this;
 				},
-
-				// Cancel the request
+				
+				// Cancel the requirement
 				abort: function( statusText ) {
 					var finalText = statusText || strAbort;
 					if ( transport ) {
@@ -9002,8 +9002,8 @@ jQuery.extend( {
 
 		// Extract dataTypes list
 		s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnothtmlwhite ) || [ "" ];
-
-		// A cross-domain request is in order when the origin doesn't match the current origin.
+		
+		// A cross-domain requirement is in order when the origin doesn't match the current origin.
 		if ( s.crossDomain == null ) {
 			urlAnchor = document.createElement( "a" );
 
@@ -9033,8 +9033,8 @@ jQuery.extend( {
 
 		// Apply prefilters
 		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
-
-		// If request was aborted inside a prefilter, stop there
+		
+		// If requirement was aborted inside a prefilter, stop there
 		if ( completed ) {
 			return jqXHR;
 		}
@@ -9050,8 +9050,8 @@ jQuery.extend( {
 
 		// Uppercase the type
 		s.type = s.type.toUpperCase();
-
-		// Determine if request has content
+		
+		// Determine if requirement has content
 		s.hasContent = !rnoContent.test( s.type );
 
 		// Save the URL in case we're toying with the If-Modified-Since
@@ -9146,8 +9146,8 @@ jQuery.extend( {
 			if ( fireGlobals ) {
 				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
 			}
-
-			// If request was aborted inside ajaxSend, stop there
+			
+			// If requirement was aborted inside ajaxSend, stop there
 			if ( completed ) {
 				return jqXHR;
 			}
@@ -9466,7 +9466,7 @@ jQuery.ajaxTransport( function( options ) {
 				// X-Requested-With header
 				// For cross-domain requests, seeing as conditions for a preflight are
 				// akin to a jigsaw puzzle, we simply never set it to be sure.
-				// (it can always be set on a per-request basis or even using ajaxSetup)
+				// (it can always be set on a per-requirement basis or even using ajaxSetup)
 				// For same-domain requests, won't change header if already provided.
 				if ( !options.crossDomain && !headers[ "X-Requested-With" ] ) {
 					headers[ "X-Requested-With" ] = "XMLHttpRequest";
@@ -9552,8 +9552,8 @@ jQuery.ajaxTransport( function( options ) {
 				callback = callback( "abort" );
 
 				try {
-
-					// Do send the request (this may raise an exception)
+					
+					// Do send the requirement (this may raise an exception)
 					xhr.send( options.hasContent && options.data || null );
 				} catch ( e ) {
 
@@ -9829,8 +9829,8 @@ jQuery.fn.load = function( url, params, callback ) {
 	} else if ( params && typeof params === "object" ) {
 		type = "POST";
 	}
-
-	// If we have elements to modify, make the request
+	
+	// If we have elements to modify, make the requirement
 	if ( self.length > 0 ) {
 		jQuery.ajax( {
 			url: url,
@@ -9854,8 +9854,8 @@ jQuery.fn.load = function( url, params, callback ) {
 
 				// Otherwise use the full result
 				responseText );
-
-		// If the request succeeds, this function gets "data", "status", "jqXHR"
+			
+			// If the requirement succeeds, this function gets "data", "status", "jqXHR"
 		// but they are ignored because response was set above.
 		// If it fails, this function gets "jqXHR", "status", "error"
 		} ).always( callback && function( jqXHR, status ) {

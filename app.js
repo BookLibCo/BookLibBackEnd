@@ -6,10 +6,10 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-const static = require('./routes/static');
-const users = require('./routes/user');
-const requirement = require('./routes/require');
-const message = require('./routes/message');
+const static      = require('./routes/static');
+const users       = require('./routes/user');
+const requirement = require('./routes/requirement');
+const message     = require('./routes/message');
 
 const app = express();
 
