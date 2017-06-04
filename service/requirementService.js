@@ -14,6 +14,9 @@ module.exports = {
             title: requirement.title,
             tag: requirement.tag,
             content: requirement.content,
+            city: requirement.city,
+            type: requirement.type,
+            discipline: requirement.discipline,
             acceptorId: requirement.acceptorId,
             state: requirement.state
         });
@@ -48,6 +51,39 @@ module.exports = {
             attribute: need,
             where: query
         });
+    },
+
+    // 根据城市查找
+    // city 城市的名字
+    // 返回需求列表
+    findByCity: function findByCity(city) {
+        return Requirement.eFindAll({
+            where: {
+                city: city
+            }
+        })
+    },
+
+    // 根据项目类别查找
+    // type 项目类别
+    // 返回需求列表
+    findByType: function findByType(type) {
+        return Requirement.eFindAll({
+            where:{
+                type: type
+            }
+        })
+    },
+
+    // 根据专业查找
+    // type 专业
+    // 返回需求列表
+    findByDiscipline: function findByDiscipline(discipline) {
+        return Requirement.eFindAll({
+            where:{
+                discipline: discipline
+            }
+        })
     },
 
     // 返回需求的标签
