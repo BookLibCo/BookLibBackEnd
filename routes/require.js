@@ -10,7 +10,8 @@ router.route('/add.service')
 	.post($.add);
 
 router.route('/list.service')
-	.post($.list);
+	.post($.list)
+	.get($.list);
 
 router.route('/one.service')
 	.post($.one);

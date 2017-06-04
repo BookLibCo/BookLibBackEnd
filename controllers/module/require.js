@@ -18,9 +18,7 @@ exports.add = function (req, res, next) {
 		acceptorId: null,           //创建时没有接受者
 		state: req.body.state
 	}).then((result) => {
-		res.send({
-		
-		})
+		return result.id;
 	}).catch((err) => {
 		err.errType = 'database';
 		next(err);
@@ -29,6 +27,7 @@ exports.add = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 // todo list&search
+	res.send('list.service requested')
 };
 
 exports.one = function (req, res, next) {
@@ -44,7 +43,7 @@ exports.one = function (req, res, next) {
 
 exports.update = function (req, res, next) {
 	return $.updateRequirement({
-		user: req.body.user_id,
+		user: req.body.userid,
 		title: req.body.title,
 		tags: req.body.tags,
 		content: req.body.content,

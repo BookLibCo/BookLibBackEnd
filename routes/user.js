@@ -1,26 +1,38 @@
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 
 const $ = require('../controllers/controller').user;
 
-//认证
+//实名认证
 router.route('/auth.service')
-    .post($.authorize);
+	.post((req, res, next) => {
+		$.authorize(req, res, next);
+	});
 
-//获取单个用户的信息
+//获取指定用户信息
 router.route('/one.service')
-    .get($.get);
+	.get((req, res, next) => {
+		$.one(req, res, next).then((userInfo) => {
+		
+		});
+	});
 
-//补全／修改用户信息
+//更新用户信息
 router.route('/info_complete.service')
-    .post($.modify);
+	.post((req, res, next) => {
+		$.modify(req, res, next)
+	});
 
 //添加好友
 router.route('/add_friend.service')
-    .post($.add);
+	.post((req, res, next) => {
+		$.add(req, res, next)
+	});
 
-//获得好友列表
+//好友列表
 router.route('/list_friend.service')
-    .get($.get);
+	.get((req, res, next) => {
+		$.list(req, res, next)
+	});
 
 module.exports = router;
