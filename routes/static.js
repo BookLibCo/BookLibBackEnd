@@ -34,7 +34,7 @@ routerStatic.get('/myinformation.html', (req, res, next) => {
 routerStatic.get('/tab-webview-subpage-about.html', (req, res, next) => {
 	Promise.resolve([
 		controller.user.one(req, res, next),
-		controller.requirement.one(req, res, next)
+		controller.req.one(req, res, next)
 	]).then((userInfo, reqInfo) => {
 		//从返回值中选取数据
 		res.render('tab-webview-subpage-about', {
@@ -46,8 +46,7 @@ routerStatic.get('/tab-webview-subpage-about.html', (req, res, next) => {
 			prodesc: reqInfo.desc,    //需求描述
 			proReq: reqInfo.req      //项目要求
 		})
-    })
-	
+	});
 });
 
 routerStatic.get('/tab-webview-subpage-chat.html', (req, res, next) => {

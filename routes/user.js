@@ -6,7 +6,7 @@ const $ = require('../controllers/controller').user;
 //实名认证
 router.route('/auth.service')
 	.post((req, res, next) => {
-		$.authorize(req, res, next).then((bool) => {
+		$.authorize(req, next).then((bool) => {
 			if (bool) {
 				res.sendSuccess('success', null);
 			}
@@ -15,7 +15,7 @@ router.route('/auth.service')
 
 //获取指定用户信息
 router.route('/one.service')
-	.get((req, res, next) => {
+	.get((req, next) => {
 		$.one(req, res, next).then((userInfo) => {
 			res.sendSuccess('success', userInfo);
 		});
@@ -23,12 +23,13 @@ router.route('/one.service')
 
 //更新用户信息
 router.route('/info_complete.service')
-	.post((req, res, next) => {
-		$.modify(req, res, next).then((bool) => {
-			if (bool) {
-				res.sendSuccess('success', null);
-			}
-		});
+	.post((req, next) => {
+		$.modify(req.session.uid, req.body.newvalue, next)
+			.then((bool) => {
+				if (bool) {
+					res.sendSuccess('success', null);
+				}
+			});
 	});
 
 //添加好友
@@ -42,9 +43,10 @@ router.route('/add_friend.service')
 //好友列表
 router.route('/list_friend.service')
 	.get((req, res, next) => {
-		$.list(req, res, next).then((friends) => {
-			res.sendSuccess('success', friends);
-		});
+		$.getFriends(req.session.uid, next)
+			.then((friends) => {
+				res.sendSuccess('success', friends);
+			});
 	});
 
 module.exports = router;

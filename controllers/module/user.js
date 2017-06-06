@@ -2,9 +2,10 @@
  * Created by zhy on 2017/4/20.
  */
 const $     = require('../../service/userService');
+const $f    = require('../../service/friendService');
 const other = require('../../other/other');
 
-exports.login = function (req, res, next) {
+exports.login = function (req, next) {
 	return $.authUser(
 		req.body.name,
 		req.body.password
@@ -15,7 +16,7 @@ exports.login = function (req, res, next) {
 	});
 };
 
-exports.logout = function (req, res, next) {
+exports.logout = function (req, next) {
 	return Promise.resolve(function () {
 		req.session.destroy();
 		return true;
@@ -24,7 +25,7 @@ exports.logout = function (req, res, next) {
 	});
 };
 
-exports.add = function (req, res, next) {
+exports.add = function (req, next) {
 	return $.createUser({
 		username: req.body.username,
 		password: req.body.password,
@@ -39,12 +40,12 @@ exports.add = function (req, res, next) {
 	});
 };
 
-exports.delete = function (req, res, next) {
-	// todo 封禁用户
+exports.delete = function (req, next) {
+	// todo: 封禁用户
 };
 
-exports.one = function (req, res, next) {
-	return $.findUserAll(req.query.id)
+exports.one = function (req, next) {
+	return $.findUserAll(req.query.userid)
 		.then((result) => {
 			return result;
 		})
@@ -53,14 +54,36 @@ exports.one = function (req, res, next) {
 		});
 };
 
-exports.list = function (req, res, next) {
-//	todo
+exports.list = function (next) {
+//	todo: list all users (admin)
 };
 
-exports.modify = function (req, res, next) {
-//	todo
+exports.getFriends = function (userId, next) {
+	return $f.findFriends(userId)
+		.then((result) => {
+			return result;
+		})
+		.catch((err) => {
+			next(other.solveDBErr(err, '查找朋友失败'));
+		});
 };
 
-exports.authorize = function (req, res, next) {
-//	todo
+exports.modify = function (userId, body, next) {
+	let newValue = {};
+	
+	for (let key in body) {
+		newValue[key] = body[key];
+	}
+	
+	return $.updateUser(newValue, userId)
+		.then((result) => {
+			return result;
+		})
+		.catch((err) => {
+			next(other.solveDBErr(err, '更新用户信息失败'));
+		});
+};
+
+exports.authorize = function (req, next) {
+//	todo: 实名认证
 };

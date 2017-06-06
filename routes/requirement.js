@@ -4,7 +4,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const $ = require('../controllers/controller').requirement;
+const $ = require('../controllers/controller').req;
 
 //发布需求
 router.route('/add.service')

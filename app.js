@@ -1,10 +1,10 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
+const express      = require('express');
+const path         = require('path');
+const favicon      = require('serve-favicon');
+const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const bodyParser = require('body-parser');
+const session      = require('express-session');
+const bodyParser   = require('body-parser');
 
 const static      = require('./routes/static');
 const users       = require('./routes/user');
@@ -20,10 +20,10 @@ tool.stringFormat();
 app.use(tool.extendModel);
 
 //设置跨域访问
-app.all('*', function(req, res, next) {
+app.all('*', function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With");
-	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+	res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
 	// res.header("X-Powered-By",' 3.2.1');
 	// res.header("Content-Type", "application/json;charset=utf-8");
 	next();
@@ -53,8 +53,8 @@ app.use(session({
 app.use(tool.refreshSession);
 
 // routers
-const middleware = require('./middleware/middleware');
-const auth = middleware.auth;
+const middleware    = require('./middleware/middleware');
+const auth          = middleware.auth;
 const sessionRouter = require('./routes/session');
 
 app.use(auth.completeCheck);
@@ -75,7 +75,7 @@ app.use('/msg', message);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-	let err = new Error('Not Found');
+	let err    = new Error('Not Found');
 	err.status = 404;
 	next(err);
 });
@@ -86,10 +86,10 @@ app.use(error.databaseErr);
 
 // 最后的错误处理, express生成
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
 	// set locals, only providing error in development
 	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
+	res.locals.error   = req.app.get('env') === 'development' ? err : {};
 	
 	// render the error page
 	res.status(err.status || 500);
