@@ -1,52 +1,15 @@
 const express = require('express');
 const router  = express.Router();
 
-const $ = require('../controllers/controller').user;
+const $  = require('../controllers/controller').user;
+const $s = require('../middleware/middleware').auth;
 
-//实名认证
-router.route('/auth.service')
-	.post((req, res, next) => {
-		$.authorize(req, next).then((bool) => {
-			if (bool) {
-				res.sendSuccess('success', null);
-			}
-		});
-	});
+// router.use($s.loginCheck);
 
-//获取指定用户信息
-router.route('/one.service')
-	.get((req, next) => {
-		$.one(req, res, next).then((userInfo) => {
-			res.sendSuccess('success', userInfo);
-		});
-	});
-
-//更新用户信息
-router.route('/info_complete.service')
-	.post((req, next) => {
-		$.modify(req.session.uid, req.body.newvalue, next)
-			.then((bool) => {
-				if (bool) {
-					res.sendSuccess('success', null);
-				}
-			});
-	});
-
-//添加好友
-router.route('/add_friend.service')
-	.post((req, res, next) => {
-		$.add(req, res, next).then((friendid) => {
-			res.sendSuccess('success', friendid);
-		});
-	});
-
-//好友列表
-router.route('/list_friend.service')
-	.get((req, res, next) => {
-		$.getFriends(req.session.uid, next)
-			.then((friends) => {
-				res.sendSuccess('success', friends);
-			});
-	});
+router.post('/auth.service', $.authorize);          //实名认证
+router.get('/one.service', $.one);                  //获取指定用户信息
+router.post('/info_complete.service', $.modify);    //更新用户信息
+router.post('/add_friend.service', $.addFriend);    //添加好友
+router.get('/list_friend.service', $.getFriends);   //好友列表
 
 module.exports = router;

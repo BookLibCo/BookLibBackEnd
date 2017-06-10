@@ -7,7 +7,7 @@ module.exports = {
     // 列出的属性必须填满 没有填写的话设成''
     createRequirement: function createRequirement(requirement) {
 	    return Requirement.create({
-        // return Requirement.eCreate({
+			// return Requirement.create({
             ownerId: requirement.ownerId,
             ownerDesc: requirement.ownerDesc,
             avatar: requirement.avatar,
@@ -27,7 +27,7 @@ module.exports = {
     //
     // id是where查询条件 需求的ID 因为没有其他条件 所以写死了
     updateRequirement: function updateRequirement(newValues, id) {
-        return Requirement.eUpdate(newValues, {
+		return Requirement.update(newValues, {
                 where: {
                     id: id
                 }
@@ -36,7 +36,7 @@ module.exports = {
 
     // 查找单个需求
     findRequirement: function findRequirement(need, query) {
-        return Requirement.eFindOne({
+		return Requirement.findOne({
             attribute: need,
             where: query
         });
@@ -44,7 +44,7 @@ module.exports = {
 
     // 查找多个需求
     findRequirements: function findRequirements(need, query) {
-        return Requirement.eFindAll({
+		return Requirement.findAll({
             attribute: need,
             where: query
         });
@@ -55,7 +55,7 @@ module.exports = {
     // id 需求的id
     // 返回Array对象 Object.name是标签的名字
     findTags: function findTags(id) {
-        return Requirement.eFindOne({
+		return Requirement.findOne({
             attribute: ['tags'],
             where: {
                 id: id
@@ -64,7 +64,7 @@ module.exports = {
             var tags = result.split('&');
             if (tags.length < 1)
                 return null;
-            return Tag.eFindAll({
+			return Tag.findAll({
                 attribute: ['name'],
                 where: {
                     id: {$in: tags}
@@ -80,7 +80,7 @@ module.exports = {
     // tag 要新加的标签
     // 标签已存在或其他错误 返回false
     addTag: function addTag(id, tag) {
-        return Tag.eFindAll({
+		return Tag.findAll({
             attribute: ['name']
         }).then(function (result) {
             for (var i = 0; i < result.length; i++) {
@@ -88,18 +88,18 @@ module.exports = {
                     return false;
                 }
             }
-            return Tag.eCreate({
+			return Tag.create({
                 name: tag
             }).then(function (result2) {
                 var newId = result2.id;
-                return Requirement.eFindOne({
+				return Requirement.findOne({
                     attribute: ['tags'],
                     where: {
                         id: id
                     }
                 }).then(function (result3) {
                     var newTag = result3.tags + '&' + newId;
-                    return Requirement.eUpdate(
+					return Requirement.update(
                         {
                             tags: newTag
                         },
