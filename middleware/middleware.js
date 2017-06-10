@@ -1,6 +1,6 @@
 /**
  * Created by zhy on 2017/5/4.
  */
-exports.auth = require('./auth');
+exports.auth = require('./session');
 exports.error = require('./error');
-exports.render = require('./render');
+exports.res   = require('./response');

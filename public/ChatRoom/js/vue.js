@@ -5367,7 +5367,7 @@ var template = Object.freeze({
           var raw = attr + '="' + descriptor.raw + '": ';
           // warn src
           if (attr === 'src') {
-	          warn(raw + 'interpolation in "src" attribute will cause ' + 'a 404 requirement. Use v-bind:src instead.', this.vm);
+	          warn(raw + 'interpolation in "src" attribute will cause ' + 'a 404 req. Use v-bind:src instead.', this.vm);
           }
 
           // warn style

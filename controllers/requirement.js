@@ -1,14 +1,15 @@
 /**
  * Created by zhy on 2017/4/20.
  */
-const $     = require('../../service/RequirementService');
-const other = require('../../other/other');
+const $  = require('../service/requirementService');
+const $e = require('../middleware/error');
 
+// 发布需求
 exports.add = function (req, res, next) {
 	let tags = req.body.tags || null;
 	let avatar = null;      //未定
 	
-	return $.createRequirement({
+	$.createRequirement({
 		ownerId: req.session.uid,   //当前登录的用户id
 		ownerDesc: req.body.description,
 		avatar: avatar,
@@ -18,43 +19,45 @@ exports.add = function (req, res, next) {
 		acceptorId: null,           //创建时没有接受者
 		state: req.body.state
 	}).then((result) => {
-		return result.id;
+		res.sendSuccess('创建需求成功', result.reqid);
 	}).catch((err) => {
-		next(other.solveDBErr(err, '创建需求失败'));
+		next($e.solveCusErr(err, '创建需求失败'));
 	});
 };
 
+// todo: 查找需求(list&search)
 exports.list = function (req, res, next) {
-// todo list&search
 	res.sendSuccess('list.service requested', 1);
 };
 
+// 根据id获得需求详细信息
 exports.one = function (req, res, next) {
-	return $.findRequirement('*', {
+	$.findRequirement('*', {
 		id: req.body.id
 	}).then((result) => {
-		return result;
+		res.sendSuccess('查询需求详细信息成功', result);
 	}).catch((err) => {
-		next(other.solveDBErr(err, '查询需求失败'));
+		next($e.solveCusErr(err, '查询需求失败'));
 	});
 };
 
+// 更改需求内容
 exports.update = function (req, res, next) {
-	return $.updateRequirement({
+	$.updateRequirement({
 		user: req.body.userid,
 		title: req.body.title,
 		tags: req.body.tags,
 		content: req.body.content,
 		state: req.body.state
 	}).then((result) => {
-		return result.id;
+		res.sendSuccess('修改需求成功', result.reqid);
 	}).catch((err) => {
-		next(other.solveDBErr(err, '更新需求失败'));
+		next($e.solveCusErr(err, '更新需求失败'));
 	});
 };
 
 exports.delete = function (req, res, next) {
-//todo
+	//todo
 };
 
 exports.fire = function (req, res, next) {

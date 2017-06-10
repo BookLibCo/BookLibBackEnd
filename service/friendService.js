@@ -7,12 +7,12 @@ module.exports = {
     // id1 和id2是两个用户的id
     // 双向添加好友
     createFriend: function createFriend(id1, id2) {
-        var fun1 = Friend.eCreate({
+		var fun1 = Friend.create({
             userId1: id1,
             userId2: id2
         });
-
-        var fun2 = Friend.eCreate({
+	
+		var fun2 = Friend.create({
             userId1: id2,
             userId2: id1
         });
@@ -25,14 +25,14 @@ module.exports = {
     // id1 和id2是两个用户的id
     // 双向删除好友
     deleteFriend: function deleteFriend(id1, id2) {
-        var fun1 = Friend.eDestroy({
+		var fun1 = Friend.destroy({
             where: {
                 userId1: id1,
                 userId2: id2
             }
         });
-
-        var fun2 = Friend.eDestroy({
+	
+		var fun2 = Friend.destroy({
             where: {
                 userId1: id2,
                 userId: id1
@@ -47,7 +47,7 @@ module.exports = {
     // id1 用户id
     // 返回Array对象 里面只有好友的id
     findFriends: function findFriends(id1) {
-        return Friend.eFindAll({
+		return Friend.findAll({
             attribute: ['userId2'],
             where: {
                 userId1: id1
@@ -60,7 +60,7 @@ module.exports = {
     // id1 用户id
     // 返回List 里面包含了id username avatar等如下的属性
     findFriendsInfo: function findFriendsInfo(id1) {
-        return Friend.eFindAll({
+		return Friend.findAll({
             attribute: ['userId2'],
             where: {
                 userId1: id1
@@ -70,7 +70,7 @@ module.exports = {
             for (var i = 0; i < result.length; i++) {
                 friends.add(result.userId2);
             }
-            return User.eFindAll({
+			return User.findAll({
                 attribute: ['id', 'username', 'avatar', 'phone', 'email', 'identity', 'school', 'discipline'],
                 where: {
                     id: {$in: friends}
@@ -85,7 +85,7 @@ module.exports = {
     // id2 用户B
     // 返回true或false
     isFriend: function isFriend(id1, id2) {
-        return Friend.eFindAll({
+		return Friend.findAll({
             attribute: ['userId2'],
             where: {
                 userId1: id1
