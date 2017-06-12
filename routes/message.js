@@ -1,19 +1,16 @@
 /**
  * Created by zhy on 2017/4/8.
  */
-var express = require('express');
-var router  = express.Router();
+const express = require('express');
+const router  = express.Router();
 
-var $ = require('../controllers/controller').message;
+const $ = require('../controllers/controller').message;
 
-router.route('/send.service')
-	.post(function (req, res, next) {
-		next()
-	});
-
-router.route('/list.service')
-	.post(function (req, res, next) {
-		next()
-	});
+router.post('/send.service', (req, res, next) => {
+	next()
+});
+router.post('/list.service', (req, res, next) => {
+	next()
+});
 
 module.exports = router;

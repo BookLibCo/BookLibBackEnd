@@ -6,7 +6,7 @@ module.exports = {
     //
     // 列出的属性必须填满 没有填写的话设成''
     createUser: function createUser(user) {
-        return User.eCreate({
+		return User.create({
             username: user.username,
             password: user.password,
             avatar: user.avatar,
@@ -34,7 +34,7 @@ module.exports = {
     //
     // id是where查询条件 用户的ID
     updateUser: function updateUser(newValues, id) {
-        return User.eUpdate(newValues,
+		return User.update(newValues,
             {
                 where: {
                     id: id
@@ -52,7 +52,7 @@ module.exports = {
     // 比如检查用户名是否存在
     // query = { username : 'foobar' }
     findUser: function findUser(need, query) {
-        return User.eFindOne({
+		return User.findOne({
             attribute: need,
             where: query
         });
@@ -60,7 +60,7 @@ module.exports = {
 
     // 同上 区别是查找多条记录 返回的是Array对象
     findUsers: function findUsers(need, query) {
-        return User.eFindAll({
+		return User.findAll({
             attribute: need,
             where: query
         });
@@ -71,7 +71,7 @@ module.exports = {
     // name 要输入的用户名
     // 返回true或false
     isUserExisted: function isUsernameExisted(name) {
-        return User.eFindAll({
+		return User.findAll({
             attribute: ['username']
         }).then(function (result) {
             for (var i = 0; i < result.length; i++) {
@@ -88,7 +88,7 @@ module.exports = {
     // id 用户的id
     // 返回Array对象 Object.name是标签的名字
     findTags: function findTags(id) {
-        return User.eFindOne({
+		return User.findOne({
             attribute: ['tags'],
             where: {
                 id: id
@@ -97,7 +97,7 @@ module.exports = {
             var tags = result.split('&');
             if (tags.length < 1)
                 return null;
-            return Tag.eFindAll({
+			return Tag.findAll({
                 attribute: ['name'],
                 where: {
                     id: {$in: tags}
@@ -112,7 +112,7 @@ module.exports = {
     // tag 要新加的标签
     // 标签已存在或其他错误 返回false
     addTag: function addTag(id, tag) {
-        return Tag.eFindAll({
+		return Tag.findAll({
             attribute: ['name']
         }).then(function (result) {
             for (var i = 0; i < result.length; i++) {
@@ -120,18 +120,18 @@ module.exports = {
                     return false;
                 }
             }
-            return Tag.eCreate({
+			return Tag.create({
                 name: tag
             }).then(function (result2) {
                 var newId = result2.id;
-                return User.eFindOne({
+				return User.findOne({
                     attribute: ['tags'],
                     where: {
                         id: id
                     }
                 }).then(function (result3) {
                     var newTag = result3.tags + '&' + newId;
-                    return User.eUpdate(
+					return User.update(
                         {
                             tags: newTag
                         },
@@ -148,14 +148,14 @@ module.exports = {
 
     // 认证用户 先留着吧
     authUser: function (name, password) {
-        return User.eFindOne({
+		return User.findOne({
             attribute: [],
             where: {}
         });
     },
 	
 	findUserAll: function (id) {
-		return User.eFindOne({
+		return User.findOne({
 			where: {
 				id: id
 			}

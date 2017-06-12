@@ -1,35 +1,31 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
+const express      = require('express');
+const path         = require('path');
+const favicon      = require('serve-favicon');
+const logger       = require('morgan');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const bodyParser = require('body-parser');
+const session      = require('express-session');
+const bodyParser   = require('body-parser');
 
-const static = require('./routes/static');
-const users = require('./routes/user');
-const request = require('./routes/require');
-const message = require('./routes/message');
+const public      = require('./routes/public');
+const users       = require('./routes/user');
+const requirement = require('./routes/requirement');
+const message     = require('./routes/message');
 
 const app = express();
 
 const tool = require('./middleware/tool');
 
-// string format
-tool.stringFormat();
-app.use(tool.extendModel);
-
-//设置跨域访问
-app.all('*', function(req, res, next) {
+// 跨域访问
+app.all('*', function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With");
-	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+	res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
 	// res.header("X-Powered-By",' 3.2.1');
 	// res.header("Content-Type", "application/json;charset=utf-8");
 	next();
 });
 
-// view engine setup
+// view engine 模版引擎
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -49,47 +45,45 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-// refresh session
-app.use(tool.refreshSession);
+// refresh session 有请求时重置session计时
+app.use(function (req, res, next) {
+	req.session._garbage = new Date();
+	req.session.touch();
+	next();
+});
+
+// string format 字符串处理
+app.use(tool.stringFormat);
 
 // routers
-const middleware = require('./middleware/middleware');
-const auth = middleware.auth;
+const middleware    = require('./middleware/middleware');
 const sessionRouter = require('./routes/session');
 
-app.use(auth.completeCheck);
-app.use(middleware.error.error);
-app.use(middleware.render.resolveRender);
+app.use(middleware.auth.completeCheck);		//数据完整性校验
+app.use(middleware.res.customize);			//response对象扩展
 
-app.use('/', static);
+app.use('/', public);			//静态路由（包含模版）
 app.use('/ses', sessionRouter);
 app.use('/user', users);
-app.use('/req', request);
+app.use('/req', requirement);
 app.use('/msg', message);
-// todo 测试时不需检查登录，部署时添加
-// app.use('/user', auth.loginCheck, users);
-// app.use('/request', auth.loginCheck, request);
-// app.use('/message', auth.loginCheck, message);
-
-// 数据库错误处理
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-	let err = new Error('Not Found');
+	let err    = new Error('Not Found');
 	err.status = 404;
 	next(err);
 });
 
 // 自定义 error handler
-const error = require('./middleware/error');
-app.use(error.databaseErr);
+app.use(require('./middleware/error').customizeErr);
 
 // 最后的错误处理, express生成
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
 	// set locals, only providing error in development
 	res.locals.message = err.message;
-	res.locals.error = req.app.get('env') === 'development' ? err : {};
+	res.locals.error   = req.app.get('env') === 'development' ? err : {};
 	
 	// render the error page
 	res.status(err.status || 500);

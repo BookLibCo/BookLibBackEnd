@@ -10,6 +10,16 @@ exports.loginCheck = function (req, res, next) {
 	}
 };
 
+exports.companyCheck = function (req, res, next) {
+	// todo: 检查是否学生
+	next();
+};
+
+exports.studentCheck = function (req, res, next) {
+	// todo: 检查是否公司
+	next();
+};
+
 exports.completeCheck = function (req, res, next) {
 	// todo: 完整性校验，防止数据篡改
 	
